@@ -1,0 +1,72 @@
+{
+  "name": "yosuga",
+  "description": "",
+  "version": "0.0.0",
+  "author": "nju33 <nju33.ki@gmail.echo>",
+  "ava": {
+    "files": [
+      "test/specs/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "bugs": "https://github.com/nju33/yosuga/issues",
+  "dependencies": {
+    "aru": "^0.0.2",
+    "case": "^1.5.2",
+    "execa": "^0.6.3",
+    "glob": "^7.1.1",
+    "pify": "^2.3.0"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "babel-eslint": "^7.2.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-class-properties": "^6.23.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-register": "^6.24.0",
+    "beeper": "^1.1.1",
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-if": "^2.0.2",
+    "gulp-plumber": "^1.1.0",
+    "gulp-shell": "^0.6.3",
+    "nullpo": "^0.0.2",
+    "pretty-error": "^2.0.3",
+    "xo": "^0.18.1"
+  },
+  "homepage": "https://github.com/nju33/yosuga#readme",
+  "keywords": [
+    "commonjs",
+    "es"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "nju33/yosuga",
+  "scripts": {
+    "build": "NODE_ENV=dev gulp lib",
+    "build:prod": "NODE_ENV=prod gulp lib",
+    "dev": "NODE_ENV=dev gulp watch",
+    "dev:browser": "NODE_ENV=dev gulp watch:browser",
+    "prepublish": "yarn build",
+    "test": "yarn test:xo && yarn test:ava",
+    "test:ava": "ava",
+    "test:xo": "xo {lib,example}/**/*.js task.config.js"
+  },
+  "xo": {
+    "env": [
+      "node",
+      "browser"
+    ],
+    "space": 2,
+    "parser": "babel-eslint"
+  }
+}
