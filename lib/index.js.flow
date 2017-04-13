@@ -1,0 +1,19 @@
+export type Option = {
+  base: string,
+  targets: string[]
+};
+
+export type SectionItems = {
+  css?: string,
+  scss?: string,
+  less?: string,
+  stylus?: string
+};
+
+export type Section = {
+  name: string,
+  layout: 'palet' | 'block',
+  title?: string,
+  html?: string | null,
+  items?: SectionItems
+};
