@@ -1,6 +1,10 @@
 export type Option = {
-  base: string,
-  targets: string[]
+  base?: string,
+  targets?: string[],
+
+  accentColor?: string
+  subColor?: string
+  baseColor?: string
 };
 
 export type SectionItems = {

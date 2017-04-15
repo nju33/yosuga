@@ -40,12 +40,14 @@ gulp.task('lib', () => {
 
 gulp.task('watch', ['lib'], () => {
   gulp.watch('+(lib|example)/*.js', ['lib']);
+  gulp.watch('yosuga/**/*', ['lib']);
 });
 
 gulp.task('watch:browser', ['lib'], () => {
   const bs = browserSync.create();
   bs.init(bsConfig, () => {
     gulp.watch('+(lib|example)/*.js', ['lib']);
+    gulp.watch('yosuga/**/*', ['lib']);
   });
 });
 

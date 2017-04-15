@@ -1,0 +1,32 @@
+.nav__box,
+.nav__child--left,
+.nav__child--right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav__child--left,
+.nav__child--right {
+  flex: auto;
+}
+
+.nav__child--right {
+  justify-content: flex-end;
+}
+
+.nav__box {
+  background: #333;
+  width: 100%;
+  color: #fff;
+}
+
+.nav__item {
+}
+
+.nav__link {
+  display: inline-block;
+  padding: .3em .5em;
+  color: inherit;
+  text-decoration: none;
+}
