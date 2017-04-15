@@ -5,7 +5,7 @@
         <li class="sidebar__item"
             :class="activeSection === item.name ? 'sidebar__item--active' : ''"
             v-for="item in items" v-if="item.html">
-          <a class="sidebar__link" :href="'#' + item.name" v-text="item.title" @click="activate(item.name)"/>
+          <a class="sidebar__link" :href="'#' + item.name" v-text="item.title" @click="activate($event, item.name)"/>
         </li>
       </ul>
     </aside>
@@ -13,6 +13,10 @@
 </template>
 
 <script>
+import MoveTo from 'moveto';
+
+const moveTo = new MoveTo({duration: 400});
+
 export default {
   props: {
     opts: {
@@ -26,9 +30,21 @@ export default {
       type: String
     }
   },
+  data() {
+    return {
+      _activeSection: this.activeSection
+    };
+  },
   methods: {
-    activate(name) {
-      this.activeSection = name;
+    activate(ev, name) {
+      ev.preventDefault();
+
+      this._activeSection = name;
+      const target = document.getElementById(name);
+      if (target) {
+        moveTo.move(target);
+        location.hash = name;
+      }
     }
   }
 }

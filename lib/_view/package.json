@@ -7,6 +7,7 @@
   "dependencies": {
     "hanko": "^0.0.2",
     "highlight.js": "^9.10.0",
+    "moveto": "^1.6.1",
     "nuxt": "latest"
   },
   "scripts": {
