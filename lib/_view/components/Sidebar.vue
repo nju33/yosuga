@@ -78,26 +78,30 @@ ul {
 }
 
 .sidebar__item {
-  padding-left: .8em;
-  /*border-left: .3em solid;*/
-  /*padding-left: 1em 0;*/
-  transition: .2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  padding-left: .8rem;
+  transition:
+    color .2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  font-size: .8rem;
+  padding: .1rem 0 .1rem .8rem;
+  transform-origin: left center;
   position: relative;
 }
 
 .sidebar__item:before {
   content: '';
-  border-left: .2em solid;
+  border-left: .2rem solid;
   position: absolute;
   left: 0;
   bottom: 50%;
   transform: translateY(50%);
   height: 0em;
-  transition: .2s cubic-bezier(0.455, 0.03, 0.515, 0.955) .2s;
+  transition: .2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 .sidebar__item--active {
   color: #cb1b45;
+  font-size: 1em;
+  padding: 0 0 0 .8rem;
 }
 
 .sidebar__item--active:before {
