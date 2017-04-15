@@ -69,3 +69,22 @@
     color: inherit;
     text-decoration: none
 }
+.card__box {
+    width: 10em;
+    border: 1px solid #ccc
+}
+.card__img {
+    height: 7em;
+    background: url(http://placehold.it/300x300) left top / cover
+}
+.card__contents {
+    padding: .3em .5em
+}
+.card__title {
+    text-align: center;
+    margin: .5em 0
+}
+.card__desc {
+    font-size: .9em;
+    word-break: break-all
+}

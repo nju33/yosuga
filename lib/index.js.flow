@@ -16,6 +16,7 @@ export type SectionItems = {
 
 export type Section = {
   name: string,
+  description?: string,
   layout: 'palet' | 'block',
   title?: string,
   html?: string | null,

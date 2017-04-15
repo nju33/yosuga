@@ -3,19 +3,30 @@ import yosuga from '..';
 yosuga([
   {
     name: 'button',
-    layput: 'palet'
+    description: `
+### headline
+
+description...description...
+
+description...description...description...
+description...description...
+    `
   },
   {
     name: 'link',
-    layout: 'card'
+    description: 'description...'
   },
   {
     name: 'table',
-    layout: 'card'
+    description: 'description...'
   },
   {
     name: 'nav',
-    layout: 'card'
+    description: 'description...'
+  },
+  {
+    name: 'card',
+    description: 'description...'
   }
 ], {
   accentColor: '#cb1b45',

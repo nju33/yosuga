@@ -8,7 +8,10 @@
       <section class="section" v-for="item in items" data-hanko-offset="center" v-if="item.html" :id="item.name">
         <header>
           <h2 class="section-title" v-text="item.title"></h2>
-          <Code :html="item.html" :items="item.items"/>
+          <div class="section-desc" v-if="item.description">
+            <div class="section-desc-contents" v-html="item.description"/>
+          </div>
+          <Code :opts="opts" :html="item.html" :items="item.items"/>
         </header>
       </section>
     </main>
@@ -96,5 +99,17 @@ h6 {
 
 .section-title {
   margin: 0 0 .5em .3em;
+}
+
+.section-desc {
+  margin: .5em;
+  box-sizing: border-box;
+  padding-left: .5em;
+  border-left: .3em solid;
+}
+
+.section-desc-contents {
+  font-size: .9em;
+  padding: .3em 0;
 }
 </style>
