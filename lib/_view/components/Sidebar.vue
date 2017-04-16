@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <aside class="sidebar__box">
+      <h1 class="title"><a class="title-link" href="/" v-text="opts.title"></a></h1>
       <ul class="sidebar__list">
         <li class="sidebar__item"
             :class="activeSection === item.name ? 'sidebar__item--active' : ''"
@@ -66,6 +67,15 @@ ul {
   width: 13em;
   position: fixed;
   border-left: .2em solid;
+}
+
+.title {
+  margin-left: .8rem;
+}
+
+.title-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .sidebar__list {

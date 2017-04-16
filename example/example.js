@@ -29,6 +29,7 @@ description...description...
     description: 'description...'
   }
 ], {
+  title: 'Test',
   accentColor: '#cb1b45',
   subColor: '#282425',
   baseColor: '#f3f3f3'
