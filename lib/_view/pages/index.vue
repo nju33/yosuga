@@ -5,7 +5,7 @@
   }">
     <Sidebar :opts="opts" :items="items" :activeSection="activeSection" class="sidebar"/>
     <main class="main" ref="main">
-      <section class="section" v-for="item in items" data-hanko-offset="center" v-if="item.html" :id="item.name">
+      <section class="section" v-for="item in items" :key="item.name" data-hanko-offset="center" v-if="item.html" :id="item.name">
         <header>
           <h2 class="section-title" v-text="item.title"></h2>
           <div class="section-desc" v-if="item.description">
