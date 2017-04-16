@@ -5,6 +5,7 @@
   "author": "nju33 <nju33.ki@gmail.com>",
   "private": true,
   "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
     "clipboard": "^1.6.1",
     "hanko": "^0.0.2",
     "highlight.js": "^9.10.0",
