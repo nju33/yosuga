@@ -44,6 +44,7 @@ export default {
       default: () => {}
     },
   },
+  name: 'Code',
   data() {
     return {
       activeTarget: null

@@ -30,6 +30,7 @@ export default {
       type: String
     }
   },
+  name: 'Sidebar',
   data() {
     return {
       _activeSection: this.activeSection

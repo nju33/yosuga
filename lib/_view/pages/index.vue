@@ -30,6 +30,7 @@ export default {
     Sidebar,
     Code
   },
+  name: 'index',
   data() {
     return {
       hanko: null,
