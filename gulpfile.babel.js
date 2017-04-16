@@ -1,7 +1,6 @@
 import gulp from 'gulp';
 import nullpo from 'nullpo';
 import plumber from 'gulp-plumber';
-import flow from 'gulp-flowtype';
 import babel from 'gulp-babel';
 import shell from 'gulp-shell';
 import gif from 'gulp-if';
@@ -28,13 +27,11 @@ const babelConf = {
 gulp.task('lib', () => {
   gulp.src('lib/*.js')
   .pipe(plumber({errorHandler: onError}))
-  .pipe(flow({
-    declarations: './lib/declarations'
-  }))
+  .pipe(gif(dev, shell(['yarn run flow'])))
   .pipe(babel(babelConf))
-  .pipe(gulp.dest('.'))
+  .pipe(gulp.dest('dist'))
   .pipe(gif(dev, shell([
-    'node -r babel-register example/example.js'
+    'node -r babel-register example/example.js',
   ])));
 });
 
