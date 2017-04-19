@@ -1,27 +1,26 @@
-.nav__box,
-.nav__child--left,
-.nav__child--right {
+.nav__box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.nav__child--left,
-.nav__child--right {
-  flex: auto;
-}
-
-.nav__child--right {
-  justify-content: flex-end;
-}
-
-.nav__box {
   background: #333;
   width: 100%;
   color: #fff;
 }
 
-.nav__item {
+.nav__child--left,
+.nav__child--right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: auto;
+  flex: auto;
+}
+
+.nav__child--right {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
 
 .nav__link {

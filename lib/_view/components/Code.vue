@@ -74,6 +74,7 @@ export default {
 <style>
 .code__box pre code{
   font-family: 'Source Code Pro', monospace;
+  font-size: 13px;
 }
 </style>
 
@@ -116,10 +117,12 @@ export default {
   user-select: none;
   box-sizing: border-box;
   cursor: pointer;
+  color: rgba(255,255,255,.6);
 }
 
 .tab.active {
   background: #282c34;
+  color: #fff;
 }
 
 .tab:not(.active) {

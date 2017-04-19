@@ -5,7 +5,7 @@
 
 .card__img {
   height: 7em;
-  background: url(http://placehold.it/300x300) left top / cover;
+  background: url(//placehold.it/300x300) center center / cover;
 }
 
 .card__contents {

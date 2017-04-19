@@ -45,7 +45,7 @@ gulp.task('lib', () => {
 
 gulp.task('watch', ['lib'], () => {
   gulp.watch('+(lib|example)/*.js', ['lib']);
-  gulp.watch('yosuga/**/*', ['lib']);
+  gulp.watch('example/styles/**/*.+(css|less|scss|styl)', ['lib']);
 });
 
 gulp.task('watch:browser', ['lib'], () => {

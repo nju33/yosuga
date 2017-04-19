@@ -2,5 +2,5 @@ export type Compiler = {
   sass: ?function,
   less: ?function,
   stylus: ?function,
-  __cssnano: function
+  standardize: function
 };
