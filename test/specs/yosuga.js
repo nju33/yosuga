@@ -13,12 +13,12 @@ test(
   async t => {
     const yosuga = new Yosuga({
       base: `${__dirname}/fixtures/`,
-      // targets: ['css', 'less']
-      targets: ['less']
+      targets: ['css', 'less']
     });
-    yosuga.process([{'name': 'test'}]).catch(err => {
-      console.log(err);
-      t.is(err.message, '')
-    });
+    try {
+      await yosuga.process([{'name': 'test'}])
+    } catch (err) {
+      t.regex(err.message, /'test' section is missing\./);
+    }
   }
 );
