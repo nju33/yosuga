@@ -39,6 +39,7 @@
     "window-size": "^0.3.0"
   },
   "devDependencies": {
+    "autoprefixer": "^6.7.7",
     "ava": "^0.18.2",
     "babel-eslint": "^7.2.1",
     "babel-plugin-add-module-exports": "^0.2.1",

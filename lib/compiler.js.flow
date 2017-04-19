@@ -1,6 +1,7 @@
 export type Compiler = {
-  sass: ?function,
-  less: ?function,
-  stylus: ?function,
+  postcss: function,
+  sass: function,
+  less: function,
+  stylus: function,
   standardize: function
 };

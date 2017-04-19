@@ -52,6 +52,9 @@ export default {
   },
   methods: {
     highlight(target, code) {
+      if (target === 'postcss') {
+        target = 'css';
+      }
       return hljs.highlight(target, code).value;
     },
     activate(target) {

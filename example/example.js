@@ -1,9 +1,13 @@
 import Yosuga from '..';
+import autoprefixer from 'autoprefixer';
 
 const yosuga = new Yosuga({
   title: 'Test',
   base: `${__dirname}/styles/`,
-  targets: ['css', 'scss'],
+  targets: ['css', 'scss', 'postcss'],
+  postcssPlugins: [
+    autoprefixer({browsers: ['> 3%', 'last 2 versions']})
+  ],
   accentColor: '#cb1b45',
   subColor: '#282425',
   baseColor: '#f3f3f3'

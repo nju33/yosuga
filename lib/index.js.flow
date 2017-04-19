@@ -1,14 +1,5 @@
 export type Option = {[string]: string | string[]}
 
-// export type Option = {
-  // base?: string,
-  // targets?: string[],
-  //
-  // accentColor?: string,
-  // subColor?: string,
-  // baseColor?: string
-// };
-
 export type compiledItems = {
   scss?: ?string,
   less?: ?string,
