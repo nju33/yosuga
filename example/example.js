@@ -2,6 +2,7 @@ import Yosuga from '..';
 
 const yosuga = new Yosuga({
   title: 'Test',
+  base: `${__dirname}/styles/`,
   accentColor: '#cb1b45',
   subColor: '#282425',
   baseColor: '#f3f3f3'
