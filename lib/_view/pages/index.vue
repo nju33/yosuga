@@ -3,15 +3,15 @@
     color: opts.subColor,
     background: opts.baseColor
   }">
-    <Sidebar :opts="opts" :items="items" :activeSection="activeSection" class="sidebar"/>
+    <Sidebar :opts="opts" :sections="sections" :activeSection="activeSection" class="sidebar"/>
     <main class="main" ref="main">
-      <section class="section" v-for="item in items" :key="item.name" data-hanko-offset="center" v-if="item.html" :id="item.name">
+      <section class="section" v-for="section in sections" :key="section.name" data-hanko-offset="center" v-if="section.html" :id="section.name">
         <header>
-          <h2 class="section-title" v-text="item.title"></h2>
-          <div class="section-desc" v-if="item.description">
-            <div class="section-desc-contents" v-html="item.description"/>
+          <h2 class="section-title" v-text="section.title"></h2>
+          <div class="section-desc" v-if="section.description">
+            <div class="section-desc-contents" v-html="section.description"/>
           </div>
-          <Code :opts="opts" :html="item.html" :items="item.items"/>
+          <Code :opts="opts" :html="section.html" :items="section.items"/>
         </header>
       </section>
     </main>
@@ -36,12 +36,12 @@ export default {
       hanko: null,
       activeSection: null,
       opts,
-      items: data
+      sections: data
     }
   },
   mounted() {
-    if (this.items.length > 0) {
-      this.activeSection = this.items[0].name;
+    if (this.sections.length > 0) {
+      this.activeSection = this.sections[0].name;
     }
 
     const children = this.$refs.main.children;

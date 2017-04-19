@@ -4,9 +4,9 @@
       <h1 class="title"><a class="title-link" href="/" v-text="opts.title"></a></h1>
       <ul class="sidebar__list">
         <li class="sidebar__item"
-            :class="activeSection === item.name ? 'sidebar__item--active' : ''"
-            v-for="item in items" v-if="item.html">
-          <a class="sidebar__link" :href="'#' + item.name" v-text="item.title" @click="activate($event, item.name)"/>
+            :class="activeSection === section.name ? 'sidebar__item--active' : ''"
+            v-for="section in sections" v-if="section.html">
+          <a class="sidebar__link" :href="'#' + section.name" v-text="section.title" @click="activate($event, section.name)"/>
         </li>
       </ul>
     </aside>
@@ -23,7 +23,7 @@ export default {
     opts: {
       type: Object
     },
-    items: {
+    sections: {
       type: Array,
       default: () => []
     },

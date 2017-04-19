@@ -25,14 +25,22 @@ const babelConf = {
 };
 
 gulp.task('lib', () => {
-  gulp.src('lib/*.js')
-  .pipe(plumber({errorHandler: onError}))
-  .pipe(gif(dev, shell(['yarn run flow'])))
-  .pipe(babel(babelConf))
-  .pipe(gulp.dest('dist'))
-  .pipe(gif(dev, shell([
-    'node -r babel-register example/example.js',
-  ])));
+  gulp.src('lib/index.js')
+    .pipe(gif(dev, shell(['yarn run flow'])))
+    .on('end', () => {
+      gulp.src('lib/*.js')
+        .pipe(plumber({errorHandler: onError}))
+        .pipe(babel(babelConf))
+        .pipe(gulp.dest('dist'))
+        .on('end', () => {
+          gulp.src('lib/index.js')
+            .pipe(gif(dev, shell([
+              'node -r babel-register example/example.js',
+            ])))
+            .on('error', onError);
+        });
+    })
+    .on('error', onError);
 });
 
 gulp.task('watch', ['lib'], () => {
