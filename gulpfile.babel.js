@@ -35,7 +35,7 @@ gulp.task('lib', () => {
         .on('end', () => {
           gulp.src('lib/index.js')
             .pipe(gif(dev, shell([
-              'node -r babel-register example/example.js',
+              'node -r babel-register example/example.js'
             ])))
             .on('error', onError);
         });

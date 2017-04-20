@@ -66,3 +66,6 @@ node_modules
 /dist/*.js
 lib/_view/lib/*.json
 lib/_view/static/yosuga.css
+/.nuxt
+/lib/**/lib/*.json
+/lib/**/yosuga.css
