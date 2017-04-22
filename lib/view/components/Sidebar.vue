@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <aside class="sidebar__box">
-      <h1 class="title"><a class="title-link" href="/" v-text="opts.title"></a></h1>
+      <h1 class="title"><a class="title-link" :href="$router.options.base" v-text="opts.title"></a></h1>
       <ul class="sidebar__list">
         <li class="sidebar__item"
             :class="activeSection === section.name ? 'sidebar__item--active' : ''"

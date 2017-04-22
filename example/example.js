@@ -3,6 +3,7 @@ import Yosuga from '..';
 import autoprefixer from 'autoprefixer';
 
 const yosuga = new Yosuga({
+  origin: 'sine',
   title: 'Test',
   base: `${__dirname}/styles/`,
   targets: ['css', 'scss', 'postcss'],

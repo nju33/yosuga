@@ -2,6 +2,7 @@ import autoprefixer from 'autoprefixer';
 import Yosuga from '.';
 
 const yosuga = new Yosuga({
+  origin: 'https://nju33.github.io',
   title: 'Test',
   base: `${__dirname}/example/styles/`,
   targets: ['css', 'scss', 'postcss'],
