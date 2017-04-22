@@ -6,8 +6,6 @@ import shell from 'gulp-shell';
 import gif from 'gulp-if';
 import PrettyError from 'pretty-error';
 import beeper from 'beeper';
-import browserSync from 'browser-sync';
-import bsConfig from './bs-config';
 
 const dev = process.env.NODE_ENV === 'dev';
 const prod = process.env.NODE_ENV === 'prod';
@@ -46,14 +44,6 @@ gulp.task('lib', () => {
 gulp.task('watch', ['lib'], () => {
   gulp.watch('+(lib|example)/*.js', ['lib']);
   gulp.watch('example/styles/**/*.+(css|less|scss|styl)', ['lib']);
-});
-
-gulp.task('watch:browser', ['lib'], () => {
-  const bs = browserSync.create();
-  bs.init(bsConfig, () => {
-    gulp.watch('+(lib|example)/*.js', ['lib']);
-    gulp.watch('yosuga/**/*', ['lib']);
-  });
 });
 
 const pe = new PrettyError();

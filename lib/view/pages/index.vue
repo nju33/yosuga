@@ -13,7 +13,7 @@
           <div class="section-desc" v-if="section.description">
             <div class="section-desc-contents" v-html="section.description"/>
           </div>
-          <Code :opts="opts" :html="section.html" :items="section.items"/>
+          <Ground :opts="opts" :html="section.html" :items="section.items" :altItems="section.altItems"/>
         </header>
       </section>
     </main>
@@ -23,14 +23,14 @@
 <script>
 import Hanko from 'hanko';
 import Sidebar from '~/components/Sidebar';
-import Code from '~/components/Code';
+import Ground from '~/components/Ground';
 import data from '~/lib/data';
 import opts from '~/lib/opts';
 
 export default {
   components: {
     Sidebar,
-    Code
+    Ground
   },
   name: 'index',
   data() {
