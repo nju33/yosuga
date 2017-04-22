@@ -244,17 +244,15 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
   margin: 0;
   overflow: auto;
   overflow: hidden;
-  /*height: 40vh;*/
 }
 
 .button--copy--code {
-  position: absolute;
-  right: 1em;
+  position: fixed;
+  right: 0;
   top: 0;
-  width: 2em;
-  height: 2em;
+  width: 24px;
+  height: 24px;
   background: transparent;
-  /*border: 1px solid;*/
   border: none;
   background: rgba(255,255,255,.2);
   outline: none;
@@ -268,8 +266,8 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
 
 .button--copy--code svg {
   position: absolute;
-  top: .3em;
-  left: .4em;
+  top: .4em;
+  left: .5em;
   display: block;
   fill: #9da5b4;
   width: 1.3em;

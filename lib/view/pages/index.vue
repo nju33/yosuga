@@ -5,14 +5,20 @@
   }">
     <Sidebar :opts="opts" :sections="sections" :activeSection="activeSection" class="sidebar"/>
     <main class="main" ref="main">
-      <section class="section" v-for="section in sections" :key="section.name" data-hanko-offset="center" v-if="section.html" :id="section.name">
+      <section class="section" v-for="section in sections" :key="section.name" v-if="section.html" :id="section.name">
         <nuxt-link class="section-title-link" :to="'/sections/' + section.name">
           <h2 class="section-title" v-text="section.title"></h2>
         </nuxt-link>
         <div class="section-desc" v-if="section.description">
           <div class="section-desc-contents" v-html="section.description"/>
         </div>
-        <iframe class="section-view" :src="$router.options.base + 'sections/' + section.name"/>
+        <iframe class="section-view" :src="$router.options.base + 'sections/' + section.name"
+          :style="{
+            backgroundImage: 'linear-gradient(to right, #fff 50%, #282c34 50%)'
+          }"
+          @mouseover="lockScroll"
+          @mouseleave="unlockScroll"
+        />
         </header>
       </section>
     </main>
@@ -21,6 +27,7 @@
 
 <script>
 import Hanko from 'hanko';
+import throttle from 'lodash.throttle';
 import Sidebar from '~/components/Sidebar';
 import Ground from '~/components/Ground';
 import data from '~/lib/data';
@@ -39,6 +46,16 @@ export default {
       opts,
       sections: data
     }
+  },
+  methods: {
+    lockScroll: throttle(() => {
+      if (document.body.style !== 'overflow') {
+        document.body.style.overflow = 'hidden';
+      }
+    }, 100),
+    unlockScroll: throttle(() => {
+      document.body.style.overflow = '';
+    }, 100)
   },
   mounted() {
     if (this.sections.length > 0) {
