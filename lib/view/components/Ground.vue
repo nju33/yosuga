@@ -1,6 +1,13 @@
 <template>
   <div class="box code__box" :style="{height: isSectionPage ? '100vh' : null}">
-    <div class="view" v-html="html"></div>
+    <div class="view" ref="view" v-html="html" :style="{
+      flexBasis: viewWidth === null ? '' : viewWidth,
+      maxWidth: viewWidth === null ? '' : viewWidth,
+      minWidth: viewWidth === null ? '' : viewWidth
+    }"></div>
+    <div class="br"
+      @mousedown="onDragStart"
+    ></div>
     <div class="editor">
       <div class="tab-bar">
         <div class="tab" :class="activeTarget === target ? 'active' : ''" v-for="(code, target) in items" v-text="target" @click="activate(target)"/>
@@ -17,11 +24,14 @@
         </div>
       </div>
     </div>
+    <div class="cover" ref="cover" style="display:none"></div>
   </div>
 </template>
 
 <script>
 import Clipboard from 'clipboard';
+import throttle from 'lodash.throttle';
+import debounce from 'lodash.debounce';
 import hljs from 'highlight.js/lib/highlight';
 import css from 'highlight.js/lib/languages/css';
 import scss from 'highlight.js/lib/languages/scss';
@@ -52,7 +62,14 @@ export default {
   name: 'Code',
   data() {
     return {
-      activeTarget: null
+      activeTarget: null,
+      dragging: false,
+
+      onThrottleDragMove: null,
+      onDebounceDragMove: null,
+      onDragEnd: null,
+
+      viewWidth: null
     };
   },
   methods: {
@@ -79,6 +96,35 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
     },
     activate(target) {
       this.activeTarget = target;
+    },
+    onDragStart() {
+      this.dragging = true;
+      this.$refs.cover.style.display = 'block';
+    },
+    createDragEnd() {
+      this.dragging = false;
+      this.$refs.cover.style.display = 'none';
+    },
+    createThrottleDragMove: throttle(function () {
+      this.handleDragMove.apply(this, arguments);
+    }, 50),
+    createDebounceDragMove: debounce(function () {
+      this.handleDragMove.apply(this, arguments);
+    }, 50),
+    handleDragMove(ev) {
+      const view = this.$refs.view;
+      if (!this.dragging || typeof view.clientWidth === 'undefined') {
+        return;
+      }
+      const currentWidth = view.clientWidth;
+      let nextWidth = ev.pageX;
+      if (nextWidth < 50) {
+        nextWidth = 50;
+      } else if (nextWidth > innerWidth - 50) {
+        nextWidth = innerWidth - 50;
+      }
+      const nextWidthPer = nextWidth / innerWidth;
+      this.viewWidth = nextWidthPer * 100 + 'vw';
     }
   },
   computed: {
@@ -95,6 +141,22 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
   mounted() {
     this.activeTarget = Object.keys(this.items)[0];
     const clipboard = new Clipboard('.button--copy--code');
+
+    this.onThrottleDragMove = this.createThrottleDragMove.bind(this);
+    this.onDebounceDragMove = this.createDebounceDragMove.bind(this);
+    this.onDragEnd = this.createDragEnd.bind(this);
+    (c => {
+      c.addEventListener('mousemove', this.onThrottleDragMove);
+      c.addEventListener('mousemove', this.onDebounceDragMove);
+      c.addEventListener('mouseup', this.onDragEnd);
+    })(this.$refs.cover);
+  },
+  beforeDestroy() {
+    (c => {
+      c.removeEventListener('mousemove', this.onThrottleDragMove);
+      c.removeEventListener('mousemove', this.onDebounceDragMove);
+      c.removeEventListener('mouseup', this.onDragEnd);
+    })(this.$refs.cover);
   }
 }
 </script>
@@ -114,11 +176,10 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
 }
 
 .view {
-  /*max-width: calc(100% - 20em);*/
-  /*min-width: calc(100% - 20em);*/
-  /*flex: 1 1 calc(100% - 20em);*/
   display: flex;
-  flex: auto;
+  max-width: 50vw;
+  min-width: 50vw;
+  flex: 1 1 50vw;
   align-items: center;
   justify-content: center;
   padding: .5em;
@@ -126,11 +187,9 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
 }
 
 .editor {
-  max-width: 50%;
-  min-width: 50%;
+  flex: auto;
   display: flex;
   flex-direction: column;
-  flex: 1 0 50%;
   background: #282c34;
   color: #f8f8f8;
   font-size: .9em;
@@ -160,6 +219,15 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
   border-bottom: #181a1f;
 }
 
+.br {
+  cursor: pointer;
+  max-width: 3px;
+  min-width: 3px;
+  flex: 0 0 3px;
+  background: #181a1f;
+  cursor: col-resize;
+}
+
 .content-block {
   flex: 1 1 100%;
   overflow: auto;
@@ -167,8 +235,6 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
 
 .content {
   padding: calc(.5em * 0.9) calc(.7em * 0.9);
-  /*height: 40vh;*/
-  /*overflow: hidden;*/
   overflow: auto;
   position: relative;
   color: #9da5b4;
@@ -208,5 +274,15 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
   fill: #9da5b4;
   width: 1.3em;
   height: 1.3em;
+}
+
+.cover {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999999;
+  cursor: col-resize;
 }
 </style>
