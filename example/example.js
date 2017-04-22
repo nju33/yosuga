@@ -17,7 +17,7 @@ const yosuga = new Yosuga({
     dir: 'docs'
   },
   router: {
-    base: '/yosuga/'
+    base: process.env.NODE_ENV === 'prod' ? '/yosuga/' : '/'
   }
 });
 

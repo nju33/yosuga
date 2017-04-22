@@ -6,14 +6,13 @@
     <Sidebar :opts="opts" :sections="sections" :activeSection="activeSection" class="sidebar"/>
     <main class="main" ref="main">
       <section class="section" v-for="section in sections" :key="section.name" data-hanko-offset="center" v-if="section.html" :id="section.name">
-        <header>
-          <nuxt-link class="section-title-link" :to="'/sections/' + section.name">
-            <h2 class="section-title" v-text="section.title"></h2>
-          </nuxt-link>
-          <div class="section-desc" v-if="section.description">
-            <div class="section-desc-contents" v-html="section.description"/>
-          </div>
-          <Ground :opts="opts" :html="section.html" :items="section.items" :altItems="section.altItems"/>
+        <nuxt-link class="section-title-link" :to="'/sections/' + section.name">
+          <h2 class="section-title" v-text="section.title"></h2>
+        </nuxt-link>
+        <div class="section-desc" v-if="section.description">
+          <div class="section-desc-contents" v-html="section.description"/>
+        </div>
+        <iframe class="section-view" :src="$router.options.base + 'sections/' + section.name"/>
         </header>
       </section>
     </main>
@@ -81,7 +80,6 @@ h6 {
   max-width: 13em;
   min-height: 100vh;
   flex: 1 0 13em;
-  /*border-right: 1px solid #ccc;*/
   box-sizing: border-box;
   padding: 1em 0;
 }
@@ -91,13 +89,26 @@ h6 {
   min-width: calc(100% - 13em);
   min-height: 100vh;
   flex: 1 1 calc(100% - 13em);
-  padding: 1em;
+  padding: 0 1em;
   box-sizing: border-box;
 }
 
 .section {
-  margin-top: .5em;
-  margin-bottom: 2.5em;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 1em 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-title-link,
+.section-desck,
+.section-view {
+  flex: auto;
+}
+
+.section-view {
+  flex-grow: 100;
 }
 
 .section-title-link {
@@ -119,5 +130,10 @@ h6 {
 .section-desc-contents {
   font-size: .9em;
   padding: .3em 0;
+}
+
+.section-view {
+  width: 100%;
+  border: none;
 }
 </style>
