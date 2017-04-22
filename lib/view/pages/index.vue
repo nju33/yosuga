@@ -7,7 +7,9 @@
     <main class="main" ref="main">
       <section class="section" v-for="section in sections" :key="section.name" data-hanko-offset="center" v-if="section.html" :id="section.name">
         <header>
-          <h2 class="section-title" v-text="section.title"></h2>
+          <nuxt-link class="section-title-link" :to="'/sections/' + section.name">
+            <h2 class="section-title" v-text="section.title"></h2>
+          </nuxt-link>
           <div class="section-desc" v-if="section.description">
             <div class="section-desc-contents" v-html="section.description"/>
           </div>
@@ -96,6 +98,11 @@ h6 {
 .section {
   margin-top: .5em;
   margin-bottom: 2.5em;
+}
+
+.section-title-link {
+  color: inherit;
+  text-decoration: none;
 }
 
 .section-title {

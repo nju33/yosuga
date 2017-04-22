@@ -15,6 +15,9 @@ const yosuga = new Yosuga({
 
   generate: {
     dir: 'docs'
+  },
+  router: {
+    base: '/yosuga/'
   }
 });
 
