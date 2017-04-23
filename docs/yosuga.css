@@ -1,4 +1,16 @@
 @charset "utf-8";
+.table {
+    border-collapse: collapse;
+    border: 1px solid #aaa
+}
+.table th {
+    background: #ccc
+}
+.table th,
+.table td {
+    padding: .3em .5em;
+    border: 1px solid #aaa
+}
 .card__box {
     width: 10em;
     border: 1px solid #ccc
@@ -17,18 +29,6 @@
 .card__desc {
     font-size: .9em;
     word-break: break-all
-}
-.table {
-    border-collapse: collapse;
-    border: 1px solid #aaa
-}
-.table th {
-    background: #ccc
-}
-.table th,
-.table td {
-    padding: .3em .5em;
-    border: 1px solid #aaa
 }
 .nav__box {
     display: -webkit-box;
