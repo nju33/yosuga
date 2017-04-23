@@ -104,15 +104,18 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
       document.body.classList.add('dragging');
     },
     createDragEnd() {
-      this.dragging = false;
-      document.body.classList.remove('dragging');
+      return handle.bind(this);
+      function handle() {
+        this.dragging = false;
+        document.body.classList.remove('dragging');
+      }
     },
-    createThrottleDragMove: throttle(function () {
-      this.handleDragMove.apply(this, arguments);
-    }, 50),
-    createDebounceDragMove: debounce(function () {
-      this.handleDragMove.apply(this, arguments);
-    }, 50),
+    createThrottleDragMove() {
+      return throttle(this.handleDragMove.bind(this), 50);
+    },
+    createDebounceDragMove() {
+      return debounce(this.handleDragMove.bind(this), 50);
+    },
     handleDragMove(ev) {
       const view = this.$refs.view;
       if (!this.dragging || typeof view.clientWidth === 'undefined') {
@@ -161,9 +164,9 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
     this.activeTarget = Object.keys(this.items)[0];
     const clipboard = new Clipboard('.button--copy--code');
 
-    this.onThrottleDragMove = this.createThrottleDragMove.bind(this);
-    this.onDebounceDragMove = this.createDebounceDragMove.bind(this);
-    this.onDragEnd = this.createDragEnd.bind(this);
+    this.onThrottleDragMove = this.createThrottleDragMove();
+    this.onDebounceDragMove = this.createDebounceDragMove();
+    this.onDragEnd = this.createDragEnd();
     (el => {
       el.addEventListener('mousemove', this.onThrottleDragMove);
       el.addEventListener('mousemove', this.onDebounceDragMove);
