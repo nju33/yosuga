@@ -1,5 +1,8 @@
 <template>
-  <div class="box code__box" :style="{height: isSectionPage ? '100vh' : null}">
+  <div class="box code__box"
+    :class="{dragging: dragging}"
+    :style="{height: isSectionPage ? '100vh' : null}"
+  >
     <div class="view" ref="view" v-html="html" :style="{
       flexBasis: viewWidth === null ? '' : viewWidth,
       maxWidth: viewWidth === null ? '' : viewWidth,
@@ -12,7 +15,7 @@
       <div class="tab-bar">
         <div class="tab" :class="activeTarget === target ? 'active' : ''" v-for="(code, target) in items" v-text="target" @click="activate(target)"/>
       </div>
-      <div class="content-block">
+      <div class="content-block" @mouseover="lockScroll" @mouseleave="unlockScroll">
         <div class="content"
           v-for="(code, target) in items"
           v-if="activeTarget === target"
@@ -24,7 +27,6 @@
         </div>
       </div>
     </div>
-    <div class="cover" ref="cover" style="display:none"></div>
   </div>
 </template>
 
@@ -99,11 +101,11 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
     },
     onDragStart() {
       this.dragging = true;
-      this.$refs.cover.style.display = 'block';
+      document.body.classList.add('dragging');
     },
     createDragEnd() {
       this.dragging = false;
-      this.$refs.cover.style.display = 'none';
+      document.body.classList.remove('dragging');
     },
     createThrottleDragMove: throttle(function () {
       this.handleDragMove.apply(this, arguments);
@@ -116,16 +118,33 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
       if (!this.dragging || typeof view.clientWidth === 'undefined') {
         return;
       }
+      const parentWidth = view.parentElement.clientWidth;
+      const parentLeft = view.parentElement.offsetLeft;
+      const parentRight = parentLeft + parentWidth;
       const currentWidth = view.clientWidth;
-      let nextWidth = ev.pageX;
+
+      let nextWidth = ev.pageX - parentLeft;
       if (nextWidth < 50) {
         nextWidth = 50;
-      } else if (nextWidth > innerWidth - 50) {
-        nextWidth = innerWidth - 50;
+      } else if (nextWidth > parentWidth - 50) {
+        nextWidth = parentWidth - 50;
       }
-      const nextWidthPer = nextWidth / innerWidth;
-      this.viewWidth = nextWidthPer * 100 + 'vw';
-    }
+
+      const nextWidthPer = nextWidth / parentWidth;
+      this.viewWidth = nextWidthPer * 100 + '%';
+    },
+    lockScroll: throttle(() => {
+      if (document.body.style.overflow !== 'hidden') {
+        document.body.style.overflow = 'hidden';
+      }
+    }, 100),
+    unlockScroll: throttle(() => {
+      if (document.body.style.overflow === 'hidden') {
+        setTimeout(() => {
+          document.body.style.overflow = '';
+        }, 100);
+      }
+    }, 100)
   },
   computed: {
     isSectionPage() {
@@ -145,23 +164,31 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
     this.onThrottleDragMove = this.createThrottleDragMove.bind(this);
     this.onDebounceDragMove = this.createDebounceDragMove.bind(this);
     this.onDragEnd = this.createDragEnd.bind(this);
-    (c => {
-      c.addEventListener('mousemove', this.onThrottleDragMove);
-      c.addEventListener('mousemove', this.onDebounceDragMove);
-      c.addEventListener('mouseup', this.onDragEnd);
-    })(this.$refs.cover);
+    (el => {
+      el.addEventListener('mousemove', this.onThrottleDragMove);
+      el.addEventListener('mousemove', this.onDebounceDragMove);
+      el.addEventListener('mouseup', this.onDragEnd);
+    })(document.body);
   },
   beforeDestroy() {
-    (c => {
-      c.removeEventListener('mousemove', this.onThrottleDragMove);
-      c.removeEventListener('mousemove', this.onDebounceDragMove);
-      c.removeEventListener('mouseup', this.onDragEnd);
-    })(this.$refs.cover);
+    (el => {
+      el.removeEventListener('mousemove', this.onThrottleDragMove);
+      el.removeEventListener('mousemove', this.onDebounceDragMove);
+      el.removeEventListener('mouseup', this.onDragEnd);
+    })(document.body);
   }
 }
 </script>
 
 <style>
+.dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: col-resize;
+}
+
 .code__box pre code{
   font-family: 'Source Code Pro', monospace;
   font-size: 13px;
@@ -171,25 +198,44 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
 <style scoped>
 .box {
   background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   overflow: hidden;
+  position: relative;
 }
 
 .view {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  max-width: 50vw;
-  min-width: 50vw;
-  flex: 1 1 50vw;
-  align-items: center;
-  justify-content: center;
+  max-width: 50%;
+  min-width: 50%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 50%;
+          flex: 1 1 50%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: .5em;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .editor {
-  flex: auto;
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background: #282c34;
   color: #f8f8f8;
   font-size: .9em;
@@ -197,14 +243,21 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
 }
 
 .tab-bar {
-  flex: 0 0 25px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 25px;
+          flex: 0 0 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background: #21252b;
 }
 
 .tab {
   padding: .3em .5em;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   box-sizing: border-box;
   cursor: pointer;
   color: rgba(255,255,255,.6);
@@ -223,31 +276,33 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
   cursor: pointer;
   max-width: 3px;
   min-width: 3px;
-  flex: 0 0 3px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 3px;
+          flex: 0 0 3px;
   background: #181a1f;
   cursor: col-resize;
 }
 
 .content-block {
-  flex: 1 1 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
   overflow: auto;
 }
 
 .content {
   padding: calc(.5em * 0.9) calc(.7em * 0.9);
-  overflow: auto;
-  position: relative;
   color: #9da5b4;
+  overflow: auto;
 }
 
 .code-wrapper {
   margin: 0;
-  overflow: auto;
   overflow: hidden;
 }
 
 .button--copy--code {
-  position: fixed;
+  position: absolute;
   right: 0;
   top: 0;
   width: 24px;
@@ -257,6 +312,7 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
   background: rgba(255,255,255,.2);
   outline: none;
   cursor: pointer;
+  -webkit-transition: .2s;
   transition: .2s;
 }
 

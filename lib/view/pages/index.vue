@@ -12,13 +12,7 @@
         <div class="section-desc" v-if="section.description">
           <div class="section-desc-contents" v-html="section.description"/>
         </div>
-        <iframe class="section-view" :src="origin + 'sections/' + section.name"
-          :style="{
-            backgroundImage: 'linear-gradient(to right, #fff 50%, #282c34 50%)'
-          }"
-          @mouseover="lockScroll"
-          @mouseleave="unlockScroll"
-        />
+        <Ground class="section-view" :opts="opts" :html="section.html" :items="section.items" :altItems="section.altItems"/>
       </section>
     </main>
   </div>
@@ -52,16 +46,6 @@ export default {
     origin() {
       return path.join(this.opts.origin, this.$router.options.base, '/');
     }
-  },
-  methods: {
-    lockScroll: throttle(() => {
-      if (document.body.style !== 'overflow') {
-        document.body.style.overflow = 'hidden';
-      }
-    }, 100),
-    unlockScroll: throttle(() => {
-      document.body.style.overflow = '';
-    }, 100)
   },
   beforeMount() {
     this.locationOrigin = location.origin;
