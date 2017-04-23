@@ -242,6 +242,7 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
   background: #282c34;
   color: #f8f8f8;
   font-size: .9em;
+  width: calc(50% - 1.5px);
   box-sizing: border-box;
 }
 
@@ -295,13 +296,14 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
 
 .content {
   padding: calc(.5em * 0.9) calc(.7em * 0.9);
+  box-sizing: border-box;
+  width: 100%;
   color: #9da5b4;
   overflow: auto;
 }
 
 .code-wrapper {
   margin: 0;
-  overflow: hidden;
 }
 
 .button--copy--code {
