@@ -114,8 +114,7 @@
       "vue"
     ],
     "extends": [
-      "plugin:flowtype/recommended",
-      "vue"
+      "plugin:flowtype/recommended"
     ]
   }
 }
