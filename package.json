@@ -46,7 +46,7 @@
     "pify": "^2.3.0",
     "postcss": "^5.2.16",
     "stylus": "^0.54.5",
-    "window-size": "^0.3.0"
+    "window-size": "^1.1.0"
   },
   "devDependencies": {
     "@nju33/postcss-preset": "^0.0.5",
