@@ -23,7 +23,7 @@
     "core-decorators": "^0.17.0",
     "csscomb": "^4.0.1",
     "cssnano": "^3.10.0",
-    "diff": "^3.2.0",
+    "diff": "^3.4.0",
     "execa": "^0.6.3",
     "fast-memoize": "^2.2.7",
     "glob": "^7.1.1",
