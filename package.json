@@ -52,7 +52,7 @@
     "@nju33/postcss-preset": "^0.0.5",
     "autoprefixer": "^6.7.7",
     "ava": "^0.18.2",
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^8.0.1",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.23.0",
