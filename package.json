@@ -28,7 +28,7 @@
     "fast-memoize": "^2.2.7",
     "glob": "^7.1.1",
     "hanko": "^0.0.2",
-    "highlight.js": "^9.10.0",
+    "highlight.js": "^9.12.0",
     "kill-port": "^1.0.0",
     "less": "^2.7.3",
     "lodash.debounce": "^4.0.8",
