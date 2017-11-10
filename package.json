@@ -68,7 +68,7 @@
     "eslint-plugin-flowtype": "^2.32.1",
     "eslint-plugin-vue": "^2.0.1",
     "flow-bin": "^0.59.0",
-    "flow-typed": "^2.0.0",
+    "flow-typed": "^2.2.3",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-if": "^2.0.2",
