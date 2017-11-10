@@ -2240,9 +2240,9 @@ css-what@2.1:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.0.tgz#9467d032c38cfaefb9f2d79501253062f87fa1bd"
 
-csscomb@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/csscomb/-/csscomb-4.0.1.tgz#a4b0139d7cf6223d635b6652ad31af0ee3e32331"
+csscomb@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/csscomb/-/csscomb-4.2.0.tgz#5f948bc94afa61c033c3984e4192f0e6fef67fdb"
   dependencies:
     babel-polyfill "6.23.0"
     glob latest
@@ -2250,7 +2250,7 @@ csscomb@^4.0.1:
     minimatch "3.0.2"
     minimist "1.1.x"
     vow "0.4.4"
-    vow-fs "0.3.2"
+    vow-fs "0.3.6"
 
 cssesc@^0.1.0:
   version "0.1.0"
@@ -3793,13 +3793,6 @@ glob2base@^0.0.12:
   resolved "https://registry.yarnpkg.com/glob2base/-/glob2base-0.0.12.tgz#9d419b3e28f12e83a362164a277055922c9c0d56"
   dependencies:
     find-index "^0.1.1"
-
-glob@3.2.8:
-  version "3.2.8"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-3.2.8.tgz#5506f4311721bcc618c7d8dba144188750307073"
-  dependencies:
-    inherits "2"
-    minimatch "~0.2.11"
 
 glob@7.0.x:
   version "7.0.6"
@@ -5905,10 +5898,6 @@ node-sass@^4.5.2:
 node-status-codes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/node-status-codes/-/node-status-codes-1.0.0.tgz#5ae5541d024645d32a58fcddc9ceecea7ae3ac2f"
-
-node-uuid@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.4.0.tgz#07f9b2337572ff6275c775e1d48513f3a45d7a65"
 
 node-uuid@~1.4.7:
   version "1.4.8"
@@ -8666,7 +8655,7 @@ utils-merge@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.0.tgz#0294fb922bb9375153541c4f7096231f287c8af8"
 
-uuid@^2.0.1:
+uuid@^2.0.1, uuid@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
 
@@ -8762,24 +8751,28 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vow-fs@0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/vow-fs/-/vow-fs-0.3.2.tgz#ea2b034d85e1db8c277eb2e9a86d1c15f5d38e7a"
+vow-fs@0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/vow-fs/-/vow-fs-0.3.6.tgz#2d4c59be22e2bf2618ddf597ab4baa923be7200d"
   dependencies:
-    glob "3.2.8"
-    node-uuid "1.4.0"
-    vow "0.4.4"
-    vow-queue "0.3.1"
+    glob "^7.0.5"
+    uuid "^2.0.2"
+    vow "^0.4.7"
+    vow-queue "^0.4.1"
 
-vow-queue@0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/vow-queue/-/vow-queue-0.3.1.tgz#598c51a15b0a81a6d5fc05f4761ceb462de1e868"
+vow-queue@^0.4.1:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/vow-queue/-/vow-queue-0.4.3.tgz#4ba8f64b56e9212c0dbe57f1405aeebd54cce78d"
   dependencies:
-    vow "~0.4.0"
+    vow "^0.4.17"
 
-vow@0.4.4, vow@~0.4.0:
+vow@0.4.4:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/vow/-/vow-0.4.4.tgz#c9fe4609129d7f5aa621508ebe64b51c95bc7b98"
+
+vow@^0.4.17, vow@^0.4.7:
+  version "0.4.17"
+  resolved "https://registry.yarnpkg.com/vow/-/vow-0.4.17.tgz#b16e08fae58c52f3ebc6875f2441b26a92682904"
 
 vue-hot-reload-api@^2.0.11:
   version "2.1.0"
