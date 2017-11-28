@@ -44,8 +44,8 @@ description...description...
     name: 'card',
     description: 'description...'
   }
-]).then(() => {
-  return yosuga.generate();
+]).then(async () => {
+  await yosuga.generate();
 }).catch(err => {
   console.log(err);
 });

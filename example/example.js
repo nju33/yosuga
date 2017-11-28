@@ -1,5 +1,5 @@
 import path from 'path';
-import Yosuga from '..';
+import Yosuga from '../lib';
 import autoprefixer from 'autoprefixer';
 
 const yosuga = new Yosuga({
@@ -46,14 +46,14 @@ description...description...
     description: 'description...'
   }
 ]).then(() => {
-  // return yosuga.generate();
-  return yosuga.serve({
-    port: 3333,
-    watch({srcDir}) {
-      return srcDir + '**/*';
-    },
-    force: true
-  });
+  return yosuga.generate();
+  // return yosuga.serve({
+  //   port: 3333,
+  //   watch({srcDir}) {
+  //     return srcDir + '**/*';
+  //   },
+  //   force: true
+  // });
 }).catch(err => {
   console.log(err);
 });
