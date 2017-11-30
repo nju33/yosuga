@@ -1,0 +1,41 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  parserOptions: {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
+  "extends": ["xo/esnext", "prettier", "prettier/flowtype", "prettier/react"],
+  "plugins": ["import", "react", "jsx-a11y", "flowtype", "prettier"],
+  "rules": {
+    "max-len": ["error", 80, {
+      "ignoreStrings": true,
+      "ignoreRegExpLiterals": true
+    }],
+    "curly": "error",
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/newline-after-import": "error",
+    "capitalized-comments": "off",
+    "camelcase": "off",
+    "flowtype/define-flow-type": "error",
+    "flowtype/use-flow-type": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/jsx-closing-bracket-location": "error",
+
+    "prettier/prettier": ["warn", {
+      "singleQuote": true,
+      "trailingComma": "all",
+      "bracketSpacing": false,
+      "jsxBracketSameLine": false
+    }]
+  }
+}

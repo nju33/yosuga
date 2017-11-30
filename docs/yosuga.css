@@ -1,25 +1,16 @@
-@charset "utf-8";.card__box {
-  width: 10em;
-  border: 1px solid #ccc;
+@charset "utf-8";.table {
+  border-collapse: collapse;
+  border: 1px solid #aaa;
 }
 
-.card__img {
-  height: 7em;
-  background: url(//placehold.it/300x300) center center / cover;
+.table th {
+  background: #ccc;
 }
 
-.card__contents {
+.table th,
+.table td {
   padding: .3em .5em;
-}
-
-.card__title {
-  text-align: center;
-  margin: .5em 0;
-}
-
-.card__desc {
-  font-size: .9em;
-  word-break: break-all;
+  border: 1px solid #aaa;
 }
 
 .nav__box {
@@ -52,21 +43,6 @@
   padding: .3em .5em;
   color: inherit;
   text-decoration: none;
-}
-
-.table {
-  border-collapse: collapse;
-  border: 1px solid #aaa;
-}
-
-.table th {
-  background: #ccc;
-}
-
-.table th,
-.table td {
-  padding: .3em .5em;
-  border: 1px solid #aaa;
 }
 
 .button {
@@ -102,4 +78,28 @@
   outline: none;
   opacity: .4;
   cursor: default;
+}
+
+.card__box {
+  width: 10em;
+  border: 1px solid #ccc;
+}
+
+.card__img {
+  height: 7em;
+  background: url(//placehold.it/300x300) center center / cover;
+}
+
+.card__contents {
+  padding: .3em .5em;
+}
+
+.card__title {
+  text-align: center;
+  margin: .5em 0;
+}
+
+.card__desc {
+  font-size: .9em;
+  word-break: break-all;
 }

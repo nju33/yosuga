@@ -1,0 +1,23 @@
+@mixin card() {
+  width: 10em;
+  border: 1px solid #ccc;
+}
+
+@mixin card__img($url: '//placehold.it/300x300') {
+  height: 7em;
+  background: url($url) center center / cover;
+}
+
+@mixin card__body() {
+  padding: .3em .5em;
+}
+
+@mixin card__headline() {
+  text-align: center;
+  margin: .5em 0;
+}
+
+@mixin card__text() {
+  font-size: .9em;
+  word-break: break-all;
+}

@@ -1,0 +1,13 @@
+@import "table";
+
+.table {
+  @include table;
+}
+
+.table th {
+  @include table__headline;
+}
+
+.table td {
+  @include table__item;
+}

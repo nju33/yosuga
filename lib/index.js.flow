@@ -1,16 +1,16 @@
-export type Option = {[string]: string | string[]}
+export type Option = {[string]: string | string[]};
 
 export type compiledItems = {
   scss?: ?string,
   less?: ?string,
-  less?: ?string
-}
+  less?: ?string,
+};
 
 export type SectionItems = {
   css?: string,
   scss?: string,
   less?: string,
-  stylus?: string
+  stylus?: string,
 };
 
 export type Section = {
@@ -19,5 +19,5 @@ export type Section = {
   layout: 'palet' | 'block',
   title?: string,
   html?: string | null,
-  items?: SectionItems
+  items?: SectionItems,
 };

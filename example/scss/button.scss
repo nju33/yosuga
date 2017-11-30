@@ -1,0 +1,21 @@
+@mixin button__base($color: null, $bgColor: #f3f3f3, $bdColor: #a6a6a6) {
+  font-size: inherit;
+  padding: .3em .5em;
+  margin: .5em;
+  background: $bgColor;
+  border: 1px solid $bdColor;
+  border-radius: 2px;
+  outline: none;
+  color: $color;
+}
+
+@mixin button--normal($color: null, $bgColor: #f3f3f3, $bdColor: #a6a6a6) {
+  @include button__base($color, $bgColor, $bdColor);
+  cursor: pointer;
+}
+
+@mixin button--disabled($color: null, $bgColor: #f3f3f3, $bdColor: #a6a6a6) {
+  @include button__base($color, $bgColor, $bdColor);
+  opacity: .4;
+  cursor: default;
+}
