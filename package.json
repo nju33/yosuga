@@ -52,6 +52,7 @@
     "pify": "^3.0.0",
     "pkg-dir": "^2.0.0",
     "postcss": "^6.0.14",
+    "postcss-sorting": "^3.1.0",
     "stylus": "^0.54.5",
     "toml": "^2.3.3",
     "window-size": "^1.1.0"
@@ -61,6 +62,7 @@
     "autoprefixer": "^7.1.6",
     "ava": "^0.24.0",
     "babel-eslint": "^8.0.2",
+    "babel-jest": "^21.2.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -89,6 +91,7 @@
     "gulp-if": "^2.0.2",
     "gulp-plumber": "^1.1.0",
     "gulp-shell": "^0.6.3",
+    "jest": "^21.2.1",
     "nullpo": "^0.0.2",
     "postcss-loader": "^2.0.9",
     "pretty-error": "^2.1.1",
@@ -113,9 +116,7 @@
     "dev:browser": "NODE_ENV=dev gulp watch:browser",
     "postinstall": "flow-typed install -f v`cat package.json | grep \\\"flow-bin\\\" | tr -cd [0-9].`",
     "prepublish": "yarn build",
-    "test": "yarn test:xo && yarn test:ava",
-    "test:ava": "ava",
-    "test:xo": "xo {lib,example}/**/*.js task.config.js"
+    "test": "jest lib/**"
   },
   "xo": {
     "env": [
