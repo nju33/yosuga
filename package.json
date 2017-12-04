@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@nju33/postcss-preset": "^0.0.5",
-    "autoprefixer": "^6.7.7",
+    "autoprefixer": "^7.2.1",
     "ava": "^0.18.2",
     "babel-eslint": "^7.1.1",
     "babel-plugin-add-module-exports": "^0.2.1",
