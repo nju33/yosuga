@@ -25,7 +25,7 @@ import throttle from 'lodash.throttle';
 import Sidebar from '~/components/Sidebar';
 import Ground from '~/components/Ground';
 import data from '~/lib/data';
-import opts from '~/lib/opts';
+// import opts from '~/lib/opts';
 
 export default {
   components: {
@@ -37,7 +37,7 @@ export default {
     return {
       hanko: null,
       activeSection: null,
-      opts,
+      opts: typeof opts === 'undefined' ? {} : opts,
       sections: data,
       locationOrigin: null
     }

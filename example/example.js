@@ -47,13 +47,13 @@ yosuga
   ])
   .then(() => {
     // return yosuga.generate();
-    // return yosuga.serve({
-    //   port: 3333,
-    //   watch({srcDir}) {
-    //     return srcDir + '**/*';
-    //   },
-    //   force: true,
-    // });
+    return yosuga.serve({
+      port: 3333,
+      watch({srcDir}) {
+        return srcDir + '**/*';
+      },
+      force: true,
+    });
   })
   .catch(err => {
     console.log(err);

@@ -13,15 +13,16 @@
     ></div>
     <div class="editor">
       <div class="tab-bar">
-        <div class="tab" :class="activeTarget === target ? 'active' : ''" v-for="(code, target) in items" v-text="target" @click="activate(target)"/>
+        <div class="tab" :class="activeTarget === item ? 'active' : ''" v-for="item in items" v-text="item.target" @click="activate(item)"/>
       </div>
       <div class="content-block" @mouseover="lockScroll" @mouseleave="unlockScroll">
         <div class="content"
-          v-for="(code, target) in items"
-          v-if="activeTarget === target"
+          v-for="item in items"
+          v-if="activeTarget === item"
         >
-          <pre class="code-wrapper"><code v-html="highlight(target, code, altItems[target])"></code></pre>
-          <button class="button--copy--code" :data-clipboard-text="code">
+          <!-- <pre class="code-wrapper"><code v-html="highlight(target, item.code, altItems[target])"></code></pre> -->
+          <pre class="code-wrapper"><code v-html="highlight(item)"></code></pre>
+          <button class="button--copy--code" :data-clipboard-text="item.code">
             <svg class="octicon octicon-clippy" viewBox="0 0 14 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path></svg>
           </button>
         </div>
@@ -75,8 +76,12 @@ export default {
     };
   },
   methods: {
-    highlight(target, code, altCode = null) {
-      if (altCode !== null) {
+    highlight({target, code, altCode}) {
+			if (target === 'sass') {
+				target = 'scss';
+			}
+
+      if (altCode !== undefined) {
         if (target === 'css' || target === 'postcss') {
           code += `
 /*
@@ -161,7 +166,7 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
     hljs.registerLanguage('stylus', stylus);
   },
   mounted() {
-    this.activeTarget = Object.keys(this.items)[0];
+    this.activeTarget = this.items[0];
     const clipboard = new Clipboard('.button--copy--code');
 
     this.onThrottleDragMove = this.createThrottleDragMove();
