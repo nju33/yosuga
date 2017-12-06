@@ -52,9 +52,9 @@ export default {
       required: true
     },
     items: {
-      type: Object,
+      type: Array,
       required: true,
-      default: () => {}
+      default: () => []
     },
     altItems: {
       type: Object,

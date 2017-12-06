@@ -1,15 +1,15 @@
 <template>
-  <div class="container">
-    <aside class="sidebar__box">
-      <h1 class="title"><a class="title-link" :href="$router.options.base" v-text="opts.title"></a></h1>
-      <ul class="sidebar__list">
-        <li class="sidebar__item"
-            :class="activeSection === section.name ? 'sidebar__item--active' : ''"
-            v-for="section in sections" v-if="section.html">
-          <a class="sidebar__link" :href="'#' + section.name" v-text="section.title" @click="activate($event, section.name)"/>
-        </li>
-      </ul>
-    </aside>
+  <div class="sidebar__box">
+    <h1 class="title"><a class="title-link" :href="$router.options.base" v-text="opts.title || 'Yosuga'"></a></h1>
+    <ul class="sidebar__list">
+      <li
+        v-for="section in sections"
+				class="sidebar__item"
+        :class="(visibleSections || []).includes(section.name) ? 'sidebar__item--active' : ''"
+			>
+        <a class="sidebar__link" :href="'#' + section.name" v-text="section.title" @click="activate($event, section.name)"/>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -29,26 +29,33 @@ export default {
     },
     activeSection: {
       type: String
+    },
+    visibleSections: {
+      type: Array,
+      default: () => []
     }
   },
   name: 'Sidebar',
   data() {
     return {
-      _activeSection: this.activeSection
+      active: this.activeSection
     };
   },
   methods: {
     activate(ev, name) {
       ev.preventDefault();
 
-      this._activeSection = name;
+      this.active = name;
       const target = document.getElementById(name);
       if (target) {
         moveTo.move(target);
         location.hash = name;
       }
     }
-  }
+  },
+	// mounted() {
+	// 	console.log(this)
+	// }
 }
 </script>
 
@@ -64,13 +71,20 @@ ul {
 }
 
 .sidebar__box {
-  width: 13em;
-  position: fixed;
-  border-left: .2em solid;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 13em;
+	background: #292c34;
+	height: 100vh;
+	color: #ccc;
 }
 
 .title {
-  margin-left: .8rem;
+	margin: 0;
+  /*margin-left: .8rem;*/
+	padding: .5em;
+	text-align: center;
 }
 
 .title-link {
@@ -92,10 +106,11 @@ ul {
   padding-left: .8rem;
   transition:
     color .2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  font-size: .8rem;
-  padding: .1rem 0 .1rem .8rem;
+  /*font-size: .8rem;*/
+  padding: .35em 1em;
   transform-origin: left center;
   position: relative;
+	transition: .135s;
 }
 
 .sidebar__item:before {
@@ -109,10 +124,11 @@ ul {
   transition: .2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
-.sidebar__item--active {
-  color: #cb1b45;
-  font-size: 1em;
-  padding: 0 0 0 .8rem;
+.sidebar__item--active,
+.sidebar__item[data-emergence=visible] {
+  /*color: #cb1b45;*/
+	background: #cb1b45;
+  /*font-size: 1em;*/
 }
 
 .sidebar__item--active:before {
