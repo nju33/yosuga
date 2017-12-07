@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar__box">
+  <div class="sidebar__box" ref="box" style="width:13em">
     <h1 class="title"><a class="title-link" :href="$router.options.base" v-text="opts.title || 'Yosuga'"></a></h1>
     <ul class="sidebar__list">
       <li
@@ -10,11 +10,13 @@
         <a class="sidebar__link" :href="'#' + section.name" v-text="section.title" @click="activate($event, section.name)"/>
       </li>
     </ul>
-  </div>
+	</div>
 </template>
 
 <script>
+import ResizeObserver from 'resize-observer-polyfill';
 import MoveTo from 'moveto';
+import ApocSidebar from '/Users/nju33/github/apoc-sidebar/dist/apoc-sidebar.es';
 
 const moveTo = new MoveTo({duration: 400});
 
@@ -38,7 +40,8 @@ export default {
   name: 'Sidebar',
   data() {
     return {
-      active: this.activeSection
+      active: this.activeSection,
+			sidebar: null,
     };
   },
   methods: {
@@ -51,11 +54,45 @@ export default {
         moveTo.move(target);
         location.hash = name;
       }
-    }
+    },
+		toggle() {
+			if (this.sidebar === null) {
+				return;
+			}
+
+			if (this.sidebar.isOpen()) {
+				this.sidebar.close();
+			} else {
+				this.sidebar.open();
+			}
+		},
+		close() {
+			if (this.sidebar === null) {
+				return;
+			}
+
+			this.sidebar.close();
+		},
   },
-	// mounted() {
-	// 	console.log(this)
-	// }
+	mounted() {
+		this.sidebar = new ApocSidebar(this.$refs.box, {
+			container: this.$parent.$el,
+			type: 'lid',
+		})
+
+		const ro = new ResizeObserver((entries, observer) => {
+	    for (const entry of entries) {
+        const {width} = entry.contentRect;
+				if (Math.floor(width) <= 768) {
+					this.sidebar.init(false);
+				} else {
+					this.sidebar.teardown();
+				}
+	    }
+		});
+
+		ro.observe(document.body);
+	}
 }
 </script>
 

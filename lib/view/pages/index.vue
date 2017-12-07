@@ -4,9 +4,9 @@
     background: opts.baseColor
   }">
 		<div class="sidebar">
-	    <Sidebar :opts="opts" :sections="sections" :activeSection="activeSection" :visibleSections="visibleSections" class="sidebar"/>
+	    <Sidebar ref="sidebar" :opts="opts" :sections="sections" :activeSection="activeSection" :visibleSections="visibleSections" class="sidebar"/>
 		</div>
-    <main class="main" ref="main">
+    <main class="main" ref="main" data-apoc-sidebar-sibling>
       <section class="section" v-for="section in sections" :key="section.name" v-if="section.html" :id="section.name" :style="{height: section.style.height}" data-emergence="hidden">
 				<header class="section-header">
 	        <nuxt-link class="section-title-link" :to="'/sections/' + section.name">
@@ -20,6 +20,9 @@
 				<iframe class="section-editor" :src="'/sections/' + section.name" />
       </section>
     </main>
+		<footer class="menu" @click="toggleSidebar">
+			<svg version="1.1" width="12" height="16" viewBox="0 0 12 16" class="octicon octicon-three-bars" aria-hidden="true"><path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/></svg>
+		</footer>
   </div>
 </template>
 
@@ -29,7 +32,6 @@ import path from 'path';
 import uniq from 'lodash.uniq';
 import emergence from 'emergence.js';
 import MoveTo from 'moveto';
-// import Hanko from 'hanko';
 import throttle from 'lodash.throttle';
 import Sidebar from '~/components/Sidebar';
 import Ground from '~/components/Ground';
@@ -59,6 +61,11 @@ export default {
       return path.join(this.opts.origin, this.$router.options.base, '/');
     }
   },
+	methods: {
+		toggleSidebar() {
+			this.$refs.sidebar.toggle();
+		}
+	},
   beforeMount() {
     this.locationOrigin = location.origin;
   },
@@ -115,8 +122,10 @@ h6 {
 
 .container {
   min-height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
+  min-width: 100vw;
   display: flex;
+	overflow: hidden;
 }
 
 .sidebar {
@@ -135,6 +144,18 @@ h6 {
   /*padding: 0 1em;*/
   box-sizing: border-box;
 	background: #c8c8c8;
+}
+
+@media (max-width: 768px) {
+	.sidebar {
+		flex: none;
+	}
+
+	.main {
+		max-width: 100vw;
+		min-width: 100vw;
+		margin-bottom: 40px;
+	}
 }
 
 .section {
@@ -192,5 +213,46 @@ h6 {
 .section-editor {
 	border: none;
 	flex: 10 1 auto;
+}
+
+@media (max-width: 768px) {
+	.section-editor {
+		max-width: 100vw;
+		min-width: 100vw
+	}
+}
+
+
+.menu {
+	display: none;
+}
+@media (max-width: 768px) {
+	.menu {
+		display: block;
+	  position: fixed;
+	  left: 0;
+	  bottom: 0;
+		width: 100%;
+		height: 40px;
+		box-sizing: border-box;
+		border-top: 1px solid #292c34;
+		z-index: 99999;
+		/*background: #292c34;*/
+		background: #fff;
+		text-align: center;
+		padding: .5em 0;
+		cursor: pointer;
+	}
+
+	.octicon-three-bars {
+		width: 2em;
+		height: 2em;
+		/*fill: #fff;*/
+		/*fill: ;*/
+		position: absolute;
+		right: 50%;
+		bottom: 50%;
+		transform: translate(50%,50%);
+	}
 }
 </style>
