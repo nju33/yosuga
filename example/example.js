@@ -3,7 +3,7 @@ import Yosuga from '../lib';
 import autoprefixer from 'autoprefixer';
 
 const yosuga = new Yosuga({
-  // title: 'Test',
+  title: 'Yosuga DEMO',
   base: `${process.cwd()}/example`,
   targets: ['css', 'scss', 'postcss'],
   postcssPlugins: [autoprefixer({browsers: ['> 3%', 'last 2 versions']})],
@@ -47,13 +47,7 @@ yosuga
   ])
   .then(() => {
     // return yosuga.generate();
-    return yosuga.serve({
-      port: 3333,
-      watch({srcDir}) {
-        return srcDir + '**/*';
-      },
-      force: true,
-    });
+    return yosuga.serve();
   })
   .catch(err => {
     console.log(err);

@@ -1,6 +1,4 @@
 @mixin nav__box() {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   background: #333;
   width: 100%;
@@ -8,16 +6,10 @@
 }
 
 @mixin nav__child($align: left) {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex: auto;
   flex: auto;
 
   @if $align == right {
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
     justify-content: flex-end;
   }
 }
