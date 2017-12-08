@@ -16,8 +16,11 @@
 	          <div class="section-desc-contents" v-html="section.description"/>
 	        </div>
 				</header>
-        <!-- <Ground class="section-view" :opts="opts" :html="section.html" :items="section.items" :altItems="section.altItems"/> -->
-				<iframe class="section-editor" :src="'/sections/' + section.name" />
+        <Ground class="section-view" :opts="opts" :html="section.html" :items="section.items" :altItems="section.altItems" :css="section.css" :size="size"/>
+				<!--
+					nuxt freeze xox
+					<iframe class="section-editor" :src="'/sections/' + section.name" />
+				-->
       </section>
     </main>
 		<footer class="menu" @click="toggleSidebar">
@@ -28,6 +31,7 @@
 
 <script>
 import 'core-js/fn/array/includes';
+import ResizeObserver from 'resize-observer-polyfill';
 import path from 'path';
 import uniq from 'lodash.uniq';
 import emergence from 'emergence.js';
@@ -53,7 +57,8 @@ export default {
       activeSection: null,
       opts: typeof opts === 'undefined' ? {} : opts,
       sections: data,
-      locationOrigin: null
+      locationOrigin: null,
+			size: 'pc',
     }
   },
   computed: {
@@ -95,17 +100,22 @@ export default {
 			});
     }
 
-    // const children = this.$refs.main.children;
-    // if (children.length > 0) {
-    //   this.hanko = new Hanko(children);
-    //   this.hanko.init();
-		//
-    //   for (const el of children) {
-    //     el.addEventListener('hankoenter', ev => {
-    //       this.activeSection = ev.target.id;
-    //     });
-    //   }
-    // }
+		const ro = new ResizeObserver((entries, observer) => {
+			for (const entry of entries) {
+				const width = entry.target.clientWidth;
+
+				if (width === undefined) {
+					return;
+				}
+
+				if (this.size === 'pc' && Math.floor(width) <= 768) {
+					this.size = 'tablet';
+				} else if (this.size === 'tablet' && Math.floor(width) > 768) {
+					this.size = 'pc';
+				}
+			}
+		});
+		ro.observe(document.body);
   }
 }
 </script>

@@ -16,7 +16,7 @@
 <script>
 import ResizeObserver from 'resize-observer-polyfill';
 import MoveTo from 'moveto';
-import ApocSidebar from '/Users/nju33/github/apoc-sidebar/dist/apoc-sidebar.es';
+import ApocSidebar from 'apoc-sidebar';
 
 const moveTo = new MoveTo({duration: 400});
 
