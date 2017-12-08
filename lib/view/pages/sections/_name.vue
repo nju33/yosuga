@@ -1,5 +1,5 @@
 <template>
-  <Ground :opts="opts" :html="section.html" :items="section.items" :altItems="section.altItems" :css="section.css"/>
+  <Ground :opts="opts" :html="section.html" :items="section.items" :altItems="section.altItems" :css="section.css" :size="size"/>
 </template>
 
 <script>

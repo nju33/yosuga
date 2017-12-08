@@ -207,6 +207,7 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
     hljs.registerLanguage('stylus', stylus);
   },
   mounted() {
+		console.log(this)
     this.activeTarget = this.items[0];
     const clipboard = new Clipboard('.button--copy--code');
 
@@ -328,6 +329,17 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
   border-bottom: #181a1f;
 }
 
+@media (max-width: 768px) {
+	.tab-bar {
+		flex-basis: 48px;
+	}
+	.tab {
+		flex: auto;
+		text-align: center;
+		padding: 1em;
+	}
+}
+
 .br {
   cursor: pointer;
   max-width: 3px;
@@ -394,6 +406,12 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
   fill: #9da5b4;
   width: 1.3em;
   height: 1.3em;
+}
+
+@media (max-width: 768px) {
+	.button--copy--code {
+		display: none
+	}
 }
 
 .cover {

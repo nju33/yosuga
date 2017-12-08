@@ -184,11 +184,9 @@ h6 {
 	flex: 1 1 0;
 }
 
-/*.section-title-link,
-.section-desc,
-.section-view {
-  flex: 1 2 auto;
-}*/
+.section-title {
+	display: inline;
+}
 
 .section-view {
   flex-grow: 100;
