@@ -10,31 +10,31 @@ import beeper from 'beeper';
 const dev = process.env.NODE_ENV === 'dev';
 const prod = process.env.NODE_ENV === 'prod';
 const babelConf = {
-  presets: nullpo([
-    ['env', {targets: {node: 6}}],
-    (prod ? 'babili' : null)
-  ]),
+  presets: nullpo([['env', {targets: {node: 6}}], prod ? 'babili' : null]),
   plugins: [
     'transform-decorators-legacy',
     'transform-object-rest-spread',
     'transform-class-properties',
-    'add-module-exports'
-  ]
+    'add-module-exports',
+  ],
 };
 
 gulp.task('lib', () => {
-  gulp.src('lib/index.js')
-    .pipe(gif(dev, shell(['yarn run flow'])))
+  gulp
+    .src('lib/index.js')
+    .pipe(gif(dev, shell(['yarn run flow check'])))
     .on('end', () => {
-      gulp.src('lib/*.js')
+      gulp
+        .src('lib/*.js')
         .pipe(plumber({errorHandler: onError}))
         .pipe(babel(babelConf))
         .pipe(gulp.dest('dist'))
         .on('end', () => {
-          gulp.src('lib/index.js')
-            .pipe(gif(dev, shell([
-              'node -r babel-register example/example.js'
-            ])))
+          gulp
+            .src('lib/index.js')
+            .pipe(
+              gif(dev, shell(['node -r babel-register example/example.js'])),
+            )
             .on('error', onError);
         });
     })
