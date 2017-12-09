@@ -30,6 +30,7 @@
     "execa": "^0.8.0",
     "fast-diff": "^1.1.2",
     "fast-memoize": "^2.2.8",
+    "flow-runtime": "^0.16.0",
     "fs-extra": "^4.0.3",
     "glob": "^7.1.2",
     "glob-promise": "^3.3.0",
