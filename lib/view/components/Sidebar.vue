@@ -75,7 +75,6 @@ export default {
 		},
   },
 	mounted() {
-		console.log(this)
 		this.sidebar = new ApocSidebar(this.$refs.box, {
 			container: this.$parent.$el,
 			type: 'lid',

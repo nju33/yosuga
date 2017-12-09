@@ -1,0 +1,22 @@
+{
+  "publicPath": "/_nuxt/",
+  "all": [
+    "common.06adb059791aea1fa294.js",
+    "manifest.8dd37b276e7c17922190.js",
+    "common.06adb059791aea1fa294.js.map",
+    "manifest.8dd37b276e7c17922190.js.map",
+    "index.spa.html",
+    "index.ssr.html"
+  ],
+  "initial": [
+    "manifest.8dd37b276e7c17922190.js",
+    "common.06adb059791aea1fa294.js"
+  ],
+  "async": [],
+  "modules": {
+    "629e580d": [
+      0,
+      2
+    ]
+  }
+}
