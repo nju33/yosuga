@@ -1,10 +1,9 @@
 <template>
   <div class="container" :style="{
-    color: opts.subColor,
-    background: opts.baseColor
+		fontSize: opts.fontsize
   }">
 		<div class="sidebar">
-	    <Sidebar ref="sidebar" :opts="opts" :sections="sections" :activeSection="activeSection" :visibleSections="visibleSections" class="sidebar"/>
+	    <Sidebar ref="sidebar" :sections="sections" :activeSection="activeSection" :visibleSections="visibleSections" class="sidebar"/>
 		</div>
     <main class="main" ref="main" data-apoc-sidebar-sibling>
       <section class="section" v-for="section in sections" :key="section.name" v-if="section.html" :id="section.name" :style="{height: section.style.height}" data-emergence="hidden">
@@ -40,7 +39,7 @@ import throttle from 'lodash.throttle';
 import Sidebar from '~/components/Sidebar';
 import Ground from '~/components/Ground';
 import data from '~/lib/data';
-// import opts from '~/lib/opts';
+import opts from '~/lib/opts';
 
 const moveTo = new MoveTo({duration: 400});
 

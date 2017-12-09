@@ -15,8 +15,27 @@
     <div class="editor">
       <div class="tab-bar">
 				<div style="display:none">{{tabletItems}}</div>
-        <div class="tab" v-if="size === 'pc'" :class="activeTarget === item ? 'active' : ''" v-for="item in items" v-text="item.target" @click="activate(item)"/>
-        <div class="tab" v-if="size === 'tablet'" :class="activeTarget === item ? 'active' : ''" v-for="item in tabletItems" v-text="item.target" @click="activate(item)"/>
+				<template v-if="size === 'pc'">
+	        <div
+						class="tab"
+						:class="activeTarget === item ? 'active' : ''"
+						:style="activeTarget === item ? {background: opts.style.accentColor} : ''"
+						v-for="item in items"
+						v-text="item.target"
+						@click="activate(item)"
+					/>
+				</template>
+				<template v-if="size === 'tablet'">
+	        <div
+						class="tab"
+						:class="activeTarget === item ? 'active' : ''"
+						:style="activeTarget === item ? {background: opts.style.accentColor} : ''"
+						v-for="item in tabletItems"
+						v-text="item.target"
+						@click="activate(item)"
+					/>
+				</template>
+
       </div>
       <div class="content-block" @mouseover="lockScroll" @mouseleave="unlockScroll">
         <div class="content content-html"
@@ -54,128 +73,131 @@ import scss from 'highlight.js/lib/languages/scss';
 import less from 'highlight.js/lib/languages/less';
 import stylus from 'highlight.js/lib/languages/stylus';
 import theme from 'highlight.js/styles/atom-one-dark.css';
+import opts from '~/lib/opts';
 
 export default {
-  props: {
-    opts: {
-      type: Object
-    },
-    html: {
-      type: String,
-      required: true
-    },
-    items: {
-      type: Array,
-      required: true,
-      default: () => []
-    },
-    altItems: {
-      type: Object,
-      requried: true,
-      default: () => {}
-    },
+	props: {
+		html: {
+			type: String,
+			required: true
+		},
+		items: {
+			type: Array,
+			required: true,
+			default: () => []
+		},
+		altItems: {
+			type: Object,
+			requried: true,
+			default: () => {}
+		},
 		css: {
 			type: String
 		},
 		size: {
 			type: String
 		}
-  },
-  name: 'Code',
-  data() {
-    return {
-      activeTarget: null,
-      dragging: false,
+	},
+	name: 'Code',
+	data() {
+		return {
+			opts,
 
-      onThrottleDragMove: null,
-      onDebounceDragMove: null,
-      onDragEnd: null,
+			activeTarget: null,
+			dragging: false,
 
-      viewWidth: null,
+			onThrottleDragMove: null,
+			onDebounceDragMove: null,
+			onDragEnd: null,
+
+			viewWidth: null,
 
 			styleTag: null
-    };
-  },
-  methods: {
-    highlight({target, code, altCode}) {
+		};
+	},
+	methods: {
+		highlight({target, code, altCode}) {
 			if (target === 'sass') {
 				target = 'scss';
 			}
 
-      if (altCode !== undefined) {
-        if (target === 'css' || target === 'postcss') {
-          code += `
+			if (altCode !== undefined) {
+				if (target === 'css' || target === 'postcss') {
+					code += `
 /*
 ${altCode.trim()}
 */
           `;
-        } else {
-          code += `
-${altCode.split('\n').map(c => `// ${c}`).join('\n')}
+				} else {
+					code += `
+${altCode
+						.split('\n')
+						.map(c => `// ${c}`)
+						.join('\n')}
           `;
-        }
-      }
+				}
+			}
 
-      if (target === 'postcss') {
-        target = 'css';
-      }
+			if (target === 'postcss') {
+				target = 'css';
+			}
 
-      return hljs.highlight(target, code).value;
-    },
-    activate(target) {
-      this.activeTarget = target;
-    },
-    onDragStart() {
-      this.dragging = true;
-      document.body.classList.add('dragging');
-    },
-    createDragEnd() {
-      return handle.bind(this);
-      function handle() {
-        this.dragging = false;
-        document.body.classList.remove('dragging');
-      }
-    },
-    createThrottleDragMove() {
-      return throttle(this.handleDragMove.bind(this), 50);
-    },
-    createDebounceDragMove() {
-      return debounce(this.handleDragMove.bind(this), 50);
-    },
-    handleDragMove(ev) {
-      const view = this.$refs.view;
-      if (!this.dragging || typeof view.clientWidth === 'undefined') {
-        return;
-      }
-      const parentWidth = view.parentElement.clientWidth;
-      const parentLeft = view.parentElement.offsetLeft;
-      const parentRight = parentLeft + parentWidth;
-      const currentWidth = view.clientWidth;
+			return hljs.highlight(target, code).value;
+		},
+		activate(target) {
+			this.activeTarget = target;
+		},
+		onDragStart() {
+			this.dragging = true;
+			document.body.classList.add('dragging');
+		},
+		createDragEnd() {
+			return handle.bind(this);
+			function handle() {
+				this.dragging = false;
+				document.body.classList.remove('dragging');
+			}
+		},
+		createThrottleDragMove() {
+			return throttle(this.handleDragMove.bind(this), 50);
+		},
+		createDebounceDragMove() {
+			return debounce(this.handleDragMove.bind(this), 50);
+		},
+		handleDragMove(ev) {
+			const view = this.$refs.view;
+			if (!this.dragging || typeof view.clientWidth === 'undefined') {
+				return;
+			}
+			const parentWidth = view.parentElement.clientWidth;
+			const parentLeft = view.parentElement.offsetLeft;
+			const parentRight = parentLeft + parentWidth;
+			const currentWidth = view.clientWidth;
 
-      let nextWidth = ev.pageX - parentLeft;
-      if (nextWidth < 50) {
-        nextWidth = 50;
-      } else if (nextWidth > parentWidth - 50) {
-        nextWidth = parentWidth - 50;
-      }
+			let nextWidth = ev.pageX - parentLeft;
+			if (nextWidth < 50) {
+				nextWidth = 50;
+			} else if (nextWidth > parentWidth - 50) {
+				nextWidth = parentWidth - 50;
+			}
 
-      const nextWidthPer = nextWidth / parentWidth;
-      this.viewWidth = nextWidthPer * 100 + '%';
-    },
-    lockScroll: throttle(() => {
-      if (document.body.style.overflow !== 'hidden') {
-        document.body.style.overflow = 'hidden';
-      }
-    }, 100),
-    unlockScroll: throttle(() => {
-      if (document.body.style.overflow === 'hidden') {
-        setTimeout(() => {
-          document.body.style.overflow = '';
-        }, 100);
-      }
-    }, 100)
-  },
-  computed: {
+			const nextWidthPer = nextWidth / parentWidth;
+			this.viewWidth = nextWidthPer * 100 + '%';
+		},
+		lockScroll: throttle(() => {
+			if (document.body.style.overflow !== 'hidden') {
+				document.body.style.overflow = 'hidden';
+			}
+		}, 100),
+		unlockScroll: throttle(() => {
+			if (document.body.style.overflow === 'hidden') {
+				setTimeout(() => {
+					document.body.style.overflow = '';
+				}, 100);
+			}
+		}, 100)
+	},
+	computed: {
 		htmlTarget() {
 			return {
 				target: 'html',
@@ -185,55 +207,55 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
 		tabletItems() {
 			return [this.htmlTarget].concat(this.items);
 		},
-    isSectionPage() {
-      return this.$route.name.startsWith('sections');
-    }
-  },
+		isSectionPage() {
+			return this.$route.name.startsWith('sections');
+		}
+	},
 	watch: {
-    size(size) {
+		size(size) {
 			if (size === 'pc') {
 				this.activeTarget.target === 'html';
 				this.activeTarget = this.items[0];
 			}
-    },
-    lastName: function (val) {
-      this.fullName = this.firstName + ' ' + val
-    }
-  },
-  beforeMount() {
-    hljs.registerLanguage('css', css);
-    hljs.registerLanguage('scss', scss);
-    hljs.registerLanguage('less', less);
-    hljs.registerLanguage('stylus', stylus);
-  },
-  mounted() {
-		console.log(this)
-    this.activeTarget = this.items[0];
-    const clipboard = new Clipboard('.button--copy--code');
+		},
+		lastName: function(val) {
+			this.fullName = this.firstName + ' ' + val;
+		}
+	},
+	beforeMount() {
+		hljs.registerLanguage('css', css);
+		hljs.registerLanguage('scss', scss);
+		hljs.registerLanguage('less', less);
+		hljs.registerLanguage('stylus', stylus);
+	},
+	mounted() {
+		console.log(this);
+		this.activeTarget = this.items[0];
+		const clipboard = new Clipboard('.button--copy--code');
 
-    this.onThrottleDragMove = this.createThrottleDragMove();
-    this.onDebounceDragMove = this.createDebounceDragMove();
-    this.onDragEnd = this.createDragEnd();
-    (el => {
-      el.addEventListener('mousemove', this.onThrottleDragMove);
-      el.addEventListener('mousemove', this.onDebounceDragMove);
-      el.addEventListener('mouseup', this.onDragEnd);
-    })(document.body);
+		this.onThrottleDragMove = this.createThrottleDragMove();
+		this.onDebounceDragMove = this.createDebounceDragMove();
+		this.onDragEnd = this.createDragEnd();
+		(el => {
+			el.addEventListener('mousemove', this.onThrottleDragMove);
+			el.addEventListener('mousemove', this.onDebounceDragMove);
+			el.addEventListener('mouseup', this.onDragEnd);
+		})(document.body);
 
-		this.styleTag = document.createElement('style')
+		this.styleTag = document.createElement('style');
 		this.styleTag.innerHTML = this.css;
 		document.head.appendChild(this.styleTag);
-  },
-  beforeDestroy() {
-    (el => {
-      el.removeEventListener('mousemove', this.onThrottleDragMove);
-      el.removeEventListener('mousemove', this.onDebounceDragMove);
-      el.removeEventListener('mouseup', this.onDragEnd);
-    })(document.body);
+	},
+	beforeDestroy() {
+		(el => {
+			el.removeEventListener('mousemove', this.onThrottleDragMove);
+			el.removeEventListener('mousemove', this.onDebounceDragMove);
+			el.removeEventListener('mouseup', this.onDragEnd);
+		})(document.body);
 
 		document.head.removeChild(this.styleTag);
-  }
-}
+	}
+};
 </script>
 
 <style>
@@ -321,7 +343,7 @@ ${altCode.split('\n').map(c => `// ${c}`).join('\n')}
 }
 
 .tab.active {
-  background: #282c34;
+  /*background: #282c34;*/
   color: #fff;
 }
 

@@ -6,6 +6,7 @@
         v-for="section in sections"
 				class="sidebar__item"
         :class="(visibleSections || []).includes(section.name) ? 'sidebar__item--active' : ''"
+				:style="(visibleSections || []).includes(section.name) ? {background: opts.style.accentColor} : ''"
 			>
         <a class="sidebar__link" :href="'#' + section.name" v-text="section.title" @click="activate($event, section.name)"/>
       </li>
@@ -17,14 +18,12 @@
 import ResizeObserver from 'resize-observer-polyfill';
 import MoveTo from 'moveto';
 import ApocSidebar from 'apoc-sidebar';
+import opts from '~/lib/opts'
 
 const moveTo = new MoveTo({duration: 400});
 
 export default {
   props: {
-    opts: {
-      type: Object
-    },
     sections: {
       type: Array,
       default: () => []
@@ -40,6 +39,7 @@ export default {
   name: 'Sidebar',
   data() {
     return {
+			opts,
       active: this.activeSection,
 			sidebar: null,
     };
@@ -75,6 +75,7 @@ export default {
 		},
   },
 	mounted() {
+		console.log(this)
 		this.sidebar = new ApocSidebar(this.$refs.box, {
 			container: this.$parent.$el,
 			type: 'lid',
@@ -164,7 +165,7 @@ ul {
 .sidebar__item--active,
 .sidebar__item[data-emergence=visible] {
   /*color: #cb1b45;*/
-	background: #cb1b45;
+	/*background: #cb1b45;*/
   /*font-size: 1em;*/
 }
 
