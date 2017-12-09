@@ -20,8 +20,8 @@ const yosuga = new Yosuga({
 yosuga
   .prepare()
   .then(() => {
-    // re turn yosuga.generate('yosuga');
-    return yosuga.serve();
+    yosuga.generate('yosuga');
+    // yosuga.serve();
   })
   .catch(err => {
     console.log(err);
