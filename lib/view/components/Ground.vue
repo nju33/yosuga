@@ -20,7 +20,7 @@
 						class="tab"
 						:class="activeTarget === item ? 'active' : ''"
 						:style="activeTarget === item ? {background: opts.style.accentColor} : ''"
-						v-for="item in items"
+						v-for="item in pcItems"
 						v-text="item.target"
 						@click="activate(item)"
 					/>
@@ -40,7 +40,7 @@
       <div class="content-block" @mouseover="lockScroll" @mouseleave="unlockScroll">
         <div class="content content-html"
           v-for="item in tabletItems"
-          v-if="item.target === 'html' && activeTarget === item"
+          v-if="item.target === 'demo' && activeTarget === item"
         >
 					<div class="view" ref="view" v-html="item.code" :style="{
 						flexBasis: viewWidth === null ? '' : viewWidth,
@@ -50,8 +50,8 @@
 				</div>
 
         <div class="content"
-          v-for="item in items"
-          v-if="item.target !== 'html' && activeTarget === item"
+          v-for="item in pcItems"
+          v-if="item.target !== 'demo' && activeTarget === item"
         >
           <pre class="code-wrapper"><code v-html="highlight(item)"></code></pre>
           <button class="button--copy--code" :data-clipboard-text="item.code">
@@ -68,6 +68,7 @@ import Clipboard from 'clipboard';
 import throttle from 'lodash.throttle';
 import debounce from 'lodash.debounce';
 import hljs from 'highlight.js/lib/highlight';
+import xml from 'highlight.js/lib/languages/xml';
 import css from 'highlight.js/lib/languages/css';
 import scss from 'highlight.js/lib/languages/scss';
 import less from 'highlight.js/lib/languages/less';
@@ -198,14 +199,23 @@ ${altCode
 		}, 100)
 	},
 	computed: {
+		demoTarget() {
+			return {
+				target: 'demo',
+				code: this.html
+			};
+		},
 		htmlTarget() {
 			return {
 				target: 'html',
 				code: this.html
 			};
 		},
-		tabletItems() {
+		pcItems() {
 			return [this.htmlTarget].concat(this.items);
+		},
+		tabletItems() {
+			return [this.demoTarget].concat(this.pcItems);
 		},
 		isSectionPage() {
 			return this.$route.name.startsWith('sections');
@@ -214,8 +224,9 @@ ${altCode
 	watch: {
 		size(size) {
 			if (size === 'pc') {
-				this.activeTarget.target === 'html';
-				this.activeTarget = this.items[0];
+				if (this.activeTarget.target === 'demo') {
+					this.activeTarget = this.pcItems[0];
+				}
 			}
 		},
 		lastName: function(val) {
@@ -223,14 +234,14 @@ ${altCode
 		}
 	},
 	beforeMount() {
+		hljs.registerLanguage('html', xml);
 		hljs.registerLanguage('css', css);
 		hljs.registerLanguage('scss', scss);
 		hljs.registerLanguage('less', less);
 		hljs.registerLanguage('stylus', stylus);
 	},
 	mounted() {
-		console.log(this);
-		this.activeTarget = this.items[0];
+		this.activeTarget = this.pcItems[0];
 		const clipboard = new Clipboard('.button--copy--code');
 
 		this.onThrottleDragMove = this.createThrottleDragMove();

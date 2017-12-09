@@ -1,4 +1,3 @@
-// import path from 'path';
 import Yosuga from '../lib';
 
 const yosuga = new Yosuga({
@@ -6,11 +5,8 @@ const yosuga = new Yosuga({
   base: `${process.cwd()}/example`,
   main: 'sass',
   targets: ['css', 'scss', 'less'],
-  // dirs: {
-  //   yosuga: 123,
-  // },
   style: {
-    fontSize: '16px',
+    fontSize: '14px',
   },
   generate: {
     dir: 'docs',
@@ -20,8 +16,7 @@ const yosuga = new Yosuga({
 yosuga
   .prepare()
   .then(() => {
-    yosuga.generate('yosuga');
-    // yosuga.serve();
+    yosuga.serve();
   })
   .catch(err => {
     console.log(err);
