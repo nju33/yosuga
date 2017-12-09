@@ -1,0 +1,13 @@
+@import "button";
+
+.button {
+  @include button--normal;
+}
+
+.button--active {
+  @include button--normal(#fff, #cb1b45, #710f26);
+}
+
+.button--disabled {
+  @include button--disabled;
+}

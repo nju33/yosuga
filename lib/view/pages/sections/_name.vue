@@ -1,11 +1,12 @@
 <template>
-  <Ground :opts="opts" :html="section.html" :items="section.items" :altItems="section.altItems"/>
+  <Ground :opts="opts" :html="section.html" :items="section.items" :altItems="section.altItems" :css="section.css" :size="size"/>
 </template>
 
 <script>
+import ResizeObserver from 'resize-observer-polyfill';
 import Ground from '~/components/Ground';
 import data from '~/lib/data';
-import opts from '~/lib/opts';
+// import opts from '~/lib/opts';
 
 export default {
   components: {Ground},
@@ -16,9 +17,29 @@ export default {
   data() {
     return {
       section: data.find(i => i.name === this.$route.params.name),
-      opts
+      opts: typeof opts === 'undefined' ? {} : opts,
+			styleTag: null,
+			size: 'pc',
     };
-  }
+  },
+	mounted() {
+		const ro = new ResizeObserver((entries, observer) => {
+			for (const entry of entries) {
+				const width = entry.target.clientWidth;
+
+				if (width === undefined) {
+					return;
+				}
+
+				if (this.size === 'pc' && Math.floor(width) <= 768) {
+					this.size = 'tablet';
+				} else if (this.size === 'tablet' && Math.floor(width) > 768) {
+					this.size = 'pc';
+				}
+			}
+		});
+		ro.observe(document.body);
+	},
 }
 </script>
 

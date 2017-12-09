@@ -1,0 +1,14 @@
+@mixin table() {
+  border-collapse: collapse;
+  border: 1px solid #aaa;
+}
+
+@mixin table__item() {
+  padding: .3em .5em;
+  border: 1px solid #aaa;
+}
+
+@mixin table__headline() {
+  @include table__item;
+  background: #ccc;
+}

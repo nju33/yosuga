@@ -1,0 +1,17 @@
+@import "nav";
+
+.nav__box {
+  @include nav__box;
+}
+
+.nav__child--left {
+  @include nav__child;
+}
+
+.nav__child--right {
+  @include nav__child(right);
+}
+
+.nav__link {
+  @include nav__link;
+}

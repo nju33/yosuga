@@ -1,0 +1,34 @@
+.button {
+  font-size: inherit;
+  padding: .3em .5em;
+  margin: .5em;
+  background: #f3f3f3;
+  border: 1px solid #a6a6a6;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.button--active {
+  font-size: inherit;
+  padding: .3em .5em;
+  margin: .5em;
+  background: #cb1b45;
+  border: 1px solid #710f26;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+}
+
+.button--disabled {
+  font-size: inherit;
+  padding: .3em .5em;
+  margin: .5em;
+  background: #f3f3f3;
+  border: 1px solid #a6a6a6;
+  border-radius: 2px;
+  outline: none;
+  opacity: .4;
+  cursor: default;
+}

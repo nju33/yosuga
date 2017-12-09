@@ -1,59 +1,28 @@
-import path from 'path';
-import Yosuga from '..';
-import autoprefixer from 'autoprefixer';
+// import path from 'path';
+import Yosuga from '../lib';
 
 const yosuga = new Yosuga({
-  title: 'Test',
-  base: `${__dirname}/styles/`,
-  targets: ['css', 'scss', 'postcss'],
-  postcssPlugins: [
-    autoprefixer({browsers: ['> 3%', 'last 2 versions']})
-  ],
-  accentColor: '#cb1b45',
-  subColor: '#282425',
-  baseColor: '#f3f3f3',
-
+  name: 'Yosuga DEMO',
+  base: `${process.cwd()}/example`,
+  main: 'sass',
+  targets: ['css', 'scss', 'less'],
+  // dirs: {
+  //   yosuga: 123,
+  // },
+  style: {
+    fontSize: '16px',
+  },
   generate: {
-    dir: 'docs'
+    dir: 'docs',
   },
-  router: {
-    base: process.env.NODE_ENV === 'prod' ? '/yosuga/' : '/'
-  }
 });
 
-yosuga.process([
-  {
-    name: 'button',
-    description: `
-### headline
-
-description...description...
-
-description...description...description...
-description...description...
-    `
-  },
-  {
-    name: 'table',
-    description: 'description...'
-  },
-  {
-    name: 'nav',
-    description: 'description...'
-  },
-  {
-    name: 'card',
-    description: 'description...'
-  }
-]).then(() => {
-  // return yosuga.generate();
-  return yosuga.serve({
-    port: 3333,
-    watch({srcDir}) {
-      return srcDir + '**/*';
-    },
-    force: true
+yosuga
+  .prepare()
+  .then(() => {
+    yosuga.generate('yosuga');
+    // yosuga.serve();
+  })
+  .catch(err => {
+    console.log(err);
   });
-}).catch(err => {
-  console.log(err);
-});

@@ -1,0 +1,21 @@
+@import "card";
+
+.card__box {
+  @include card;
+}
+
+.card__img {
+  @include card__img;
+}
+
+.card__contents {
+  @include card__body;
+}
+
+.card__title {
+  @include card__headline;
+}
+
+.card__desc {
+  @include card__text;
+}

@@ -1,0 +1,22 @@
+@mixin nav__box() {
+  display: flex;
+  background: #333;
+  width: 100%;
+  color: #fff;
+}
+
+@mixin nav__child($align: left) {
+  display: flex;
+  flex: auto;
+
+  @if $align == right {
+    justify-content: flex-end;
+  }
+}
+
+@mixin nav__link() {
+  display: inline-block;
+  padding: .3em .5em;
+  color: inherit;
+  text-decoration: none;
+}

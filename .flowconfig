@@ -6,5 +6,6 @@
 [libs]
 
 [options]
+munge_underscores=true
 esproposal.decorators=ignore
 unsafe.enable_getters_and_setters=true

@@ -14,6 +14,12 @@ npm i -D yosuga
 
 ## Usage
 
+### Instance methods
+
+#### generate
+
+`yosuga.generate(base?: string)`
+
 ## Related
 
 ## License
