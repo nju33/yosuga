@@ -1,6 +1,7 @@
 /example
 /docs
-/lib
+/lib/*
+!/lib/view
 /.nuxt
 /coverage
 /.circleci
