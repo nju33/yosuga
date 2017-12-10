@@ -1,12 +1,12 @@
 <template>
   <div class="container" :style="{
-		fontSize: opts.fontsize
+		fontSize: size === 'pc' ? opts.style.fontSize : `calc(${opts.style.fontSize} * 1.1111)`
   }">
 		<div class="sidebar">
 	    <Sidebar ref="sidebar" :sections="sections" :activeSection="activeSection" :visibleSections="visibleSections" class="sidebar"/>
 		</div>
     <main class="main" ref="main" data-apoc-sidebar-sibling>
-      <section class="section" v-for="section in sections" :key="section.name" v-if="section.html" :id="section.name" :style="{height: section.style.height}" data-emergence="hidden">
+      <section class="section" v-for="section in sections" :key="section.name" v-if="section.html" :id="section.name" :style="size === 'pc' ? {height: section.style.height} : {height: `calc(${section.style.height} * 1.5)`}" data-emergence="hidden">
 				<header class="section-header">
 	        <nuxt-link class="section-title-link" :to="'/sections/' + section.name">
 	          <h2 class="section-title" v-text="section.title"></h2>
@@ -51,6 +51,7 @@ export default {
   name: 'index',
   data() {
     return {
+			opts,
       hanko: null,
 			visibleSections: [],
       activeSection: null,

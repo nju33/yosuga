@@ -3,11 +3,7 @@
     :class="{dragging: dragging}"
     :style="{height: isSectionPage ? '100vh' : null}"
   >
-    <div class="view" ref="view" v-if="size === 'pc'" v-html="html" :style="{
-      flexBasis: viewWidth === null ? '' : viewWidth,
-      maxWidth: viewWidth === null ? '' : viewWidth,
-      minWidth: viewWidth === null ? '' : viewWidth
-    }"></div>
+    <div class="view" ref="view" v-if="size === 'pc'" v-html="html"></div>
     <div class="br"
 			v-if="size === 'pc'"
       @mousedown="onDragStart"
