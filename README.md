@@ -14,6 +14,11 @@ CSS styleguide generator
 
 ![yosuga: screenshot](https://github.com/nju33/yosuga/blob/master/assets/screenshot.png?raw=true)
 
+
+## QuickStart
+
+[https://github.com/nju33/yosuga-quickstart](https://github.com/nju33/yosuga-quickstart)
+
 ## Install
 ```bash
 yarn add -D yosuga
@@ -104,20 +109,33 @@ For example, if `opts.main` is set to `less`, only the `button` will be included
 interface Options {
   // Base directory
   base: `${process.cwd()}/example`;
+	
   // Site's icon(logo) file name. This is as follows
   // `path.join(opts.base, opts.icon)`, if there is
   icon?: string;
+	
   // Site's title
   name?: string;
+	
   // Main (alt)css
   main?: 'css' | 'postcss' | 'sass' | 'less' | 'stylus';
+	// default is `css`
+	
   // Adjust to your liking
-  style: {
+  style?: {
     fontSize?: string;
     accentColor?: string;
   };
+	//
+	// default
+	//
+	// style: {
+	//  fontSize: '14px',
+	//  accentColor: '#cb1b45'
+	// }
+	
   // Map of each directory name
-  dirs: {
+  dirs?: {
     // ``path.join(opts.base, opts.dirs.yosuga)`
     yosuga?: string;
     // ``path.join(opts.base, opts.dirs.css)`
@@ -131,6 +149,18 @@ interface Options {
     // ``path.join(opts.base, opts.dirs.stylus)`
     stylus?: string
   },
+	//
+	// defaults
+	//
+	// dirs: {
+	//   yosuga: 'yosuga',
+  //   css: 'css',
+	//   postcss: 'postcss',
+	//   sass: 'sass',
+	//   less: 'less',
+	//   stylus: 'stylus',
+	// }
+	
   // `nuxt.generate`
   generate?: {
     dir?: 'docs';
@@ -143,3 +173,4 @@ interface Options {
 The MIT License (MIT)
 
 Copyright (c) 2017 nju33 <nju33.ki@gmail.com>
+ 
