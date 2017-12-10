@@ -4687,9 +4687,9 @@ he@1.1.x, he@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
 
-"hex-color-regex@git+https://github.com/btholt/hex-color-regex.git":
+"hex-color-regex@https://github.com/btholt/hex-color-regex.git":
   version "1.1.0"
-  resolved "git+https://github.com/btholt/hex-color-regex.git#9486788aab7c8d79a9bc70a9141669b95a03f2eb"
+  resolved "https://github.com/btholt/hex-color-regex.git#9486788aab7c8d79a9bc70a9141669b95a03f2eb"
 
 hexa-color-regex@1.0.0:
   version "1.0.0"
@@ -6132,7 +6132,7 @@ lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/lodash.cond/-/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
 
-lodash.debounce@^4.0.3:
+lodash.debounce@^4.0.3, lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
 
