@@ -4,8 +4,7 @@ CSS styleguide generator
 
 [![npm: nju33/yosuga](https://img.shields.io/npm/v/yosuga.svg)](https://www.npmjs.com/package/yosuga)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
-[![CircleCI](https://circleci.com/gh/nju33/yosuga/tree/master.svg?style=svg&circle-token=c4e7c826107ebab3ee313c62f2cca3030d9a3610)](https://circleci.com/gh/nju33/yosuga/tree/master)
-[![Coverage Status](https://coveralls.io/repos/github/nju33/yosuga/badge.svg?branch=master)](https://coveralls.io/github/nju33/yosuga?branch=master)
+[![CircleCI](https://circleci.com/gh/nju33/yosuga.svg?style=svg)](https://circleci.com/gh/nju33/yosuga)[![Coverage Status](https://coveralls.io/repos/github/nju33/yosuga/badge.svg?branch=master)](https://coveralls.io/github/nju33/yosuga?branch=master)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![license: mit](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
