@@ -1,4 +1,4 @@
-import Yosuga from '.';
+import Yosuga from './lib';
 
 const yosuga = new Yosuga({
   name: 'Yosuga DEMO',

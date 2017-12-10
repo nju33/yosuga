@@ -1,4 +1,4 @@
-importScripts('/yosuga/_nuxt/workbox.dev.7002ba07.js')
+importScripts('/yosuga/_nuxt/workbox.476439e0.js')
 
 const workboxSW = new self.WorkboxSW({
   "cacheId": "yosuga",
@@ -8,8 +8,8 @@ const workboxSW = new self.WorkboxSW({
 
 workboxSW.precache([
   {
-    "url": "/yosuga/_nuxt/app.2eda57c3c08c69c7ba16.js",
-    "revision": "ca747e8d08933f88047dcda6a63ff10f"
+    "url": "/yosuga/_nuxt/app.7c30a3b06538ab94e5ed.js",
+    "revision": "16f73d669da3233d18027ebf2ae80e6f"
   },
   {
     "url": "/yosuga/_nuxt/common.99599cbbdb01c347ca4b.js",
@@ -20,8 +20,8 @@ workboxSW.precache([
     "revision": "f7229ba76711ac48c672d9387010bcc4"
   },
   {
-    "url": "/yosuga/_nuxt/manifest.cb53257501aabd90e414.js",
-    "revision": "4c29f484bd133913b9ce2495566d0f94"
+    "url": "/yosuga/_nuxt/manifest.dc623c735daa0c412a8a.js",
+    "revision": "f939bf4242c09cf23835b6f578e04eb7"
   },
   {
     "url": "/yosuga/_nuxt/pages/index.67b19758c45f59abd91a.js",
@@ -37,4 +37,6 @@ workboxSW.precache([
 workboxSW.router.registerRoute(new RegExp('/yosuga/_nuxt/.*'), workboxSW.strategies.cacheFirst({}), 'GET')
 
 workboxSW.router.registerRoute(new RegExp('/yosuga/.*'), workboxSW.strategies.networkFirst({}), 'GET')
+
+workboxSW.router.registerRoute(new RegExp('https://fonts.googleapis.com/css?family=.*'), workboxSW.strategies.cacheFirst({}), 'GET')
 
