@@ -113,7 +113,7 @@
     "build:example": "NODE_ENV=production node -r babel-register build-example.js",
     "dev": "NODE_ENV=dev gulp watch",
     "dev:browser": "NODE_ENV=dev gulp watch:browser",
-    "postinstall": "flow-typed install -f v`cat package.json | grep \\\"flow-bin\\\" | tr -cd [0-9].`",
+    "flow-typed": "flow-typed install -f v`cat package.json | grep \\\"flow-bin\\\" | tr -cd [0-9].`",
     "prepare": "yarn build",
     "test": "jest lib/**",
     "test:ci": "yarn test -- --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
