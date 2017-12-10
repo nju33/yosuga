@@ -5,7 +5,12 @@
 
 [libs]
 
+[lints]
+
 [options]
-munge_underscores=true
 esproposal.decorators=ignore
+munge_underscores=true
 unsafe.enable_getters_and_setters=true
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+
+[strict]

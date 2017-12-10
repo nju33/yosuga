@@ -4,7 +4,6 @@ const yosuga = new Yosuga({
   name: 'Yosuga DEMO',
   base: `${process.cwd()}/example`,
   main: 'sass',
-  targets: ['css', 'scss', 'less'],
   style: {
     fontSize: '14px',
   },

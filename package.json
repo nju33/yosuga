@@ -67,6 +67,7 @@
     "window-size": "^1.1.0"
   },
   "devDependencies": {
+    "@babel/register": "^7.0.0-beta.34",
     "@nju33/postcss-preset": "^0.0.5",
     "autoprefixer": "^7.2.1",
     "ava": "^0.24.0",
@@ -102,6 +103,7 @@
     "gulp-shell": "^0.6.3",
     "jest": "^21.2.1",
     "nullpo": "^0.0.2",
+    "postcss-load-config": "^1.2.0",
     "postcss-loader": "^2.0.9",
     "pretty-error": "^2.1.1",
     "vue-server-renderer": "^2.5.9",
