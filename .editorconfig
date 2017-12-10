@@ -10,6 +10,7 @@ insert_final_newline = true
 
 [*.{md,txt}]
 trim_trailing_whitespace = false
+indent_size = 2
 
 [*.{js,jsx,json,ts,tsx,css,scss,less,rs,toml,yml,fish}]
 indent_style = space

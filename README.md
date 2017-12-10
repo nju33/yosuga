@@ -24,6 +24,8 @@ npm i -D yosuga
 
 ### Example
 
+#### Code
+
 ```js
 import Yosuga from 'yosuga';
 
@@ -43,40 +45,96 @@ const yosuga = new Yosuga({
 yosuga
   .prepare()
   .then(() => {
-		// for development
+  // for development
     yosuga.serve();
 
-		// if production
+  // if production
     // yosuga.generate('/yosuga/');
   })
   .catch(err => {
     console.log(err);
   });
-
 ```
+
+#### Tree
+
+Each (alt)css file must output the same content between the same basename.
+For targets other than `css`, `* .yosuga.*` is actually used for comparison.
+
+```bash
+.
+├── css                          // optional
+│   ├── button.css
+│   ├── card.css
+│   ├── nav.css
+│   ├── tab.css
+│   └── table.css
+├── icon.png                     // optional
+├── less                         // optional
+│   ├── button.less
+│   └── button.yosuga.less
+├── postcss                      // optional
+│   ├── button.css
+│   └── button.yosuga.css
+├── sass                         // optional
+│   ├── button.scss
+│   ├── button.yosuga.scss
+│   ├── card.scss
+│   ├── card.yosuga.scss
+│   ├── nav.scss
+│   ├── nav.yosuga.scss
+│   ├── table.scss
+│   └── table.yosuga.scss
+├── stylus                       // optional
+│   ├── button.styl
+│   └── button.yosuga.styl
+└── yosuga
+    ├── button.html
+    ├── card.html
+    ├── nav.html
+    ├── tab.html
+    └── table.html
+```
+
+For example, if `opts.main` is set to `less`, only the `button` will be included in the site.
 
 ### Options
 
 ```js
 interface Options {
-	// Base directory
-	base: `${process.cwd()}/example`,
-	// Site's icon(logo) file name. This is as follows
-	// `path.join(opts.base, opts.icon)`, if there is
-	icon?: string,
-	// Site's title
-	name?: string,
-	// Main (alt)css
-	main?: 'css' | 'postcss' | 'sass' | 'less' | 'stylus',
-	// Adjust to your liking
-	style: {
-		fontSize?: string,
-		accentColor?: string,
-	},
-	// `nuxt.generate`
-	generate?: {
-		dir?: 'docs',
-	},
+  // Base directory
+  base: `${process.cwd()}/example`;
+  // Site's icon(logo) file name. This is as follows
+  // `path.join(opts.base, opts.icon)`, if there is
+  icon?: string;
+  // Site's title
+  name?: string;
+  // Main (alt)css
+  main?: 'css' | 'postcss' | 'sass' | 'less' | 'stylus';
+  // Adjust to your liking
+  style: {
+    fontSize?: string;
+    accentColor?: string;
+  };
+  // Map of each directory name
+  dirs: {
+    // ``path.join(opts.base, opts.dirs.yosuga)`
+    yosuga?: string;
+    // ``path.join(opts.base, opts.dirs.css)`
+    css?: string
+    // ``path.join(opts.base, opts.dirs.postcss)`
+    postcss?: string
+    // ``path.join(opts.base, opts.dirs.sass)`
+    sass?: string
+    // ``path.join(opts.base, opts.dirs.less)`
+    less?: string
+    // ``path.join(opts.base, opts.dirs.stylus)`
+    stylus?: string
+  },
+  // `nuxt.generate`
+  generate?: {
+    dir?: 'docs';
+  };
 }
 ```
 
