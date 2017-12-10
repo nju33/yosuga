@@ -80,7 +80,7 @@ export default {
 	mounted() {
 		this.sidebar = new ApocSidebar(this.$refs.box, {
 			container: this.$parent.$el,
-			type: 'lid',
+			type: 'push',
 		})
 
 		const ro = new ResizeObserver((entries, observer) => {
