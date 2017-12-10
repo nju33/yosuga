@@ -8,6 +8,11 @@ CSS styleguide generator
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![license: mit](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
+## Demo
+
+[https://nju33.github.io/yosuga/](https://nju33.github.io/yosuga/)
+
+![yosuga: screenshot](https://github.com/nju33/yosuga/blob/master/assets/screenshot.png?raw=true)
 
 ## Install
 ```bash
