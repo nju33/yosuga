@@ -1,26 +1,80 @@
 # yosuga
 
-[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
+CSS styleguide generator
+
+[![npm: nju33/yosuga](https://img.shields.io/npm/v/yosuga.svg)](https://www.npmjs.com/package/yosuga)
+[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+[![CircleCI](https://circleci.com/gh/nju33/yosuga/tree/master.svg?style=svg&circle-token=c4e7c826107ebab3ee313c62f2cca3030d9a3610)](https://circleci.com/gh/nju33/yosuga/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/nju33/yosuga/badge.svg?branch=master)](https://coveralls.io/github/nju33/yosuga?branch=master)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![license: mit](https://img.shields.io/packagist/l/doctrine/orm.svg)
+
 
 ## Install
-<!--
 ```bash
 yarn add -D yosuga
 npm i -D yosuga
 ```
 
-```js
-``` -->
-
 ## Usage
 
-### Instance methods
+### Example
 
-#### generate
+```js
+import Yosuga from 'yosuga';
 
-`yosuga.generate(base?: string)`
+const yosuga = new Yosuga({
+  icon: 'icon.png',
+  name: 'Yosuga DEMO',
+  base: `${process.cwd()}/example`,
+  main: 'sass',
+  style: {
+    fontSize: '14px',
+  },
+  generate: {
+    dir: 'docs',
+  },
+});
 
-## Related
+yosuga
+  .prepare()
+  .then(() => {
+		// for development
+    yosuga.serve();
+
+		// if production
+    // yosuga.generate('/yosuga/');
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+```
+
+### Options
+
+```js
+interface Options {
+	// Base directory
+	base: `${process.cwd()}/example`,
+	// Site's icon(logo) file name. This is as follows
+	// `path.join(opts.base, opts.icon)`, if there is
+	icon?: string,
+	// Site's title
+	name?: string,
+	// Main (alt)css
+	main?: 'css' | 'postcss' | 'sass' | 'less' | 'stylus',
+	// Adjust to your liking
+	style: {
+		fontSize?: string,
+		accentColor?: string,
+	},
+	// `nuxt.generate`
+	generate?: {
+		dir?: 'docs',
+	},
+}
+```
 
 ## License
 

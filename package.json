@@ -1,6 +1,6 @@
 {
   "name": "yosuga",
-  "description": "",
+  "description": "CSS styleguide generator",
   "version": "0.0.0",
   "author": "nju33 <nju33.ki@gmail.com>",
   "ava": {
@@ -129,7 +129,8 @@
     "dev:browser": "NODE_ENV=dev gulp watch:browser",
     "postinstall": "flow-typed install -f v`cat package.json | grep \\\"flow-bin\\\" | tr -cd [0-9].`",
     "prepublish": "yarn build",
-    "test": "jest lib/**"
+    "test": "jest lib/**",
+    "test:ci": "yarn test -- --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "xo": {
     "env": [
