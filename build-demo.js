@@ -1,4 +1,4 @@
-import Yosuga from './lib';
+import Yosuga from './dist';
 
 const yosuga = new Yosuga({
   icon: 'icon.png',
