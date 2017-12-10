@@ -1,6 +1,9 @@
 <template>
   <div class="sidebar__box" ref="box" style="width:13em">
-    <h1 class="title"><a class="title-link" :href="$router.options.base" v-text="opts.title || 'Yosuga'"></a></h1>
+    <h1 class="title">
+			<div v-if="opts.icon" style="background: url(icon.png) center center /contain no-repeat;height:4em"></div>
+			<a class="title-link" :href="$router.options.base" v-text="opts.title || 'Yosuga'"></a>
+		</h1>
     <ul class="sidebar__list">
       <li
         v-for="section in sections"

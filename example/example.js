@@ -1,6 +1,7 @@
 import Yosuga from '../lib';
 
 const yosuga = new Yosuga({
+  icon: 'icon.png',
   name: 'Yosuga DEMO',
   base: `${process.cwd()}/example`,
   main: 'sass',
