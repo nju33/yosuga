@@ -3,7 +3,11 @@
     :class="{dragging: dragging}"
     :style="{height: isSectionPage ? '100vh' : null}"
   >
-    <div class="view" ref="view" v-if="size === 'pc'" v-html="html"></div>
+    <div class="view" ref="view" v-if="size === 'pc'" v-html="html" :style="{
+      flexBasis: viewWidth === null ? '' : viewWidth,
+      maxWidth: viewWidth === null ? '' : viewWidth,
+      minWidth: viewWidth === null ? '' : viewWidth
+    }"></div>
     <div class="br"
 			v-if="size === 'pc'"
       @mousedown="onDragStart"
@@ -38,11 +42,12 @@
           v-for="item in tabletItems"
           v-if="item.target === 'demo' && activeTarget === item"
         >
-					<div class="view" ref="view" v-html="item.code" :style="{
-						flexBasis: viewWidth === null ? '' : viewWidth,
-						maxWidth: viewWidth === null ? '' : viewWidth,
-						minWidth: viewWidth === null ? '' : viewWidth
-					}"></div>
+					<div
+						class="view"
+						ref="view"
+						v-html="item.code"
+						style="max-width:100%;min-width:100%"
+					></div>
 				</div>
 
         <div class="content"
@@ -336,6 +341,7 @@ ${altCode
   display: -ms-flexbox;
   display: flex;
   background: #21252b;
+	overflow: auto;
 }
 
 .tab {
