@@ -8,28 +8,28 @@ const workboxSW = new self.WorkboxSW({
 
 workboxSW.precache([
   {
-    "url": "/yosuga/_nuxt/app.2fd35e5b6f418d10e9a1.js",
-    "revision": "18b0d0f42bb958ba9a51854a1c65be21"
+    "url": "/yosuga/_nuxt/app.cba20b1ff22c3ddc7680.js",
+    "revision": "47aaed4d4a32721315bbe8a120aa8f38"
   },
   {
     "url": "/yosuga/_nuxt/common.d25cde6fdc5cd49db353.js",
     "revision": "f96b3842f8e96719f7450b88c8a8428b"
   },
   {
-    "url": "/yosuga/_nuxt/layouts/default.ee665b8ad46016d2c5b2.js",
-    "revision": "f7229ba76711ac48c672d9387010bcc4"
+    "url": "/yosuga/_nuxt/layouts/default.e91abdcfede10cc06aa5.js",
+    "revision": "d2537010040dd3722fc5ac754e2479ae"
   },
   {
-    "url": "/yosuga/_nuxt/manifest.00b10740241c1c0878d9.js",
-    "revision": "9a2d40fa5072a7724765a9a5bcc916c2"
+    "url": "/yosuga/_nuxt/manifest.2bdd97047b076325808a.js",
+    "revision": "07909027db015e881196b28c1dae4765"
   },
   {
-    "url": "/yosuga/_nuxt/pages/index.1270f041ccd2a968c067.js",
-    "revision": "ce109432987c457d8ac8664ef10f8e0f"
+    "url": "/yosuga/_nuxt/pages/index.7b523a8ffd6fb2537d24.js",
+    "revision": "187dd1898e827b9a42a332b4820e81dc"
   },
   {
-    "url": "/yosuga/_nuxt/pages/sections/_name.7d90ed1a98b0fe119717.js",
-    "revision": "4aa7bbd8013e29932d8b10ed5408ba90"
+    "url": "/yosuga/_nuxt/pages/sections/_name.567c97cfc9afcf9841bb.js",
+    "revision": "015939458caee35f2a3f4b84ef4f886c"
   }
 ])
 
