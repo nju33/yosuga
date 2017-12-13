@@ -86,7 +86,7 @@
     "postcss-loader": "^2.0.9",
     "pretty-error": "^2.1.1",
     "vue-server-renderer": "^2.5.9",
-    "vue-template-compiler": "^2.5.9"
+    "vue-template-compiler": "^2.5.10"
   },
   "homepage": "https://github.com/nju33/yosuga#readme",
   "keywords": [
