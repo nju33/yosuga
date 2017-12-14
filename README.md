@@ -19,6 +19,10 @@ CSS styleguide generator
 
 [https://github.com/nju33/yosuga-quickstart](https://github.com/nju33/yosuga-quickstart)
 
+## CLI
+
+[https://github.com/nju33/yosuga-cli](https://github.com/nju33/yosuga-cli)
+
 ## Install
 ```bash
 yarn add -D yosuga
