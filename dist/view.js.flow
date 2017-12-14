@@ -164,17 +164,15 @@ export default class View {
     (this.config.manifest: any).name = title;
   }
 
-  setRoutes(sections: any[]) {
+  setRoutes(sections: any[]): Promise<void> {
     const routes = sections.map(s => `/sections/${s.name}`);
-    if (this.config.generate) {
-      if (this.config.generate.routes === undefined) {
-        this.config.generate = {
-          ...this.config.generate,
-          routes,
-        };
-      } else {
-        this.config.generate.routes.push(...routes);
-      }
+    if (this.config.generate.routes === undefined) {
+      this.config.generate = {
+        ...this.config.generate,
+        routes,
+      };
+    } else {
+      this.config.generate.routes.push(...routes);
     }
   }
 

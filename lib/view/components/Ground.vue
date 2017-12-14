@@ -3,13 +3,13 @@
     :class="{dragging: dragging}"
     :style="{height: isSectionPage ? '100vh' : null}"
   >
-    <div class="view" ref="view" v-if="size === 'pc'" v-html="html" :style="{
+    <div class="view" ref="view" v-if="size === 'pc' && !isEmbed" v-html="html" :style="{
       flexBasis: viewWidth === null ? '' : viewWidth,
       maxWidth: viewWidth === null ? '' : viewWidth,
       minWidth: viewWidth === null ? '' : viewWidth
     }"></div>
     <div class="br"
-			v-if="size === 'pc'"
+			v-if="size === 'pc' && !isEmbed"
       @mousedown="onDragStart"
     ></div>
     <div class="editor">
@@ -42,6 +42,11 @@
           v-for="item in tabletItems"
           v-if="item.target === 'demo' && activeTarget === item"
         >
+
+					<a class="doc-link" :href="url" v-if="isEmbed" target="_blank">
+						<svg width="12" height="16" viewBox="0 0 12 16" class="octicon octicon-link-external" aria-hidden="true"><path fill-rule="evenodd" d="M11 10h1v3c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h3v1H1v10h10v-3zM6 2l2.25 2.25L5 7.5 6.5 9l3.25-3.25L12 8V2H6z"/></svg>
+					</a>
+
 					<div
 						class="view"
 						ref="view"
@@ -55,8 +60,11 @@
           v-if="item.target !== 'demo' && activeTarget === item"
         >
           <pre class="code-wrapper"><code v-html="highlight(item)"></code></pre>
-          <button class="button--copy--code" :data-clipboard-text="item.code">
+          <button v-if="!isEmbed" class="button--copy--code" :data-clipboard-text="item.code">
             <svg class="octicon octicon-clippy" viewBox="0 0 14 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path></svg>
+          </button>
+          <button v-if="!isEmbed" class="button--embed--code" :data-clipboard-text="embedTag">
+						<svg viewBox="0 0 12 16" class="octicon octicon-gist" aria-hidden="true"><path fill-rule="evenodd" d="M7.5 5L10 7.5 7.5 10l-.75-.75L8.5 7.5 6.75 5.75 7.5 5zm-3 0L2 7.5 4.5 10l.75-.75L3.5 7.5l1.75-1.75L4.5 5zM0 13V2c0-.55.45-1 1-1h10c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1zm1 0h10V2H1v11z"/></svg>
           </button>
         </div>
       </div>
@@ -94,16 +102,20 @@ export default {
 			default: () => {}
 		},
 		css: {
-			type: String
+			type: String,
 		},
 		size: {
-			type: String
-		}
+			type: String,
+		},
+		isEmbed: {
+			type: Boolean,
+		},
 	},
 	name: 'Code',
 	data() {
 		return {
 			opts,
+			url: typeof window !== 'undefined' && location.href.replace(/\?.*/, ''),
 
 			activeTarget: null,
 			dragging: false,
@@ -114,7 +126,12 @@ export default {
 
 			viewWidth: null,
 
-			styleTag: null
+			styleTag: null,
+
+			clipboard: {
+				copy: null,
+				embed: null,
+			},
 		};
 	},
 	methods: {
@@ -200,6 +217,9 @@ ${altCode
 		}, 100)
 	},
 	computed: {
+		embedTag() {
+			return `<iframe src="${location.href + '?mode=embed'}" style="height:210px;width:100%;border:1px solid #22252c;"></iframe>`;
+		},
 		demoTarget() {
 			return {
 				target: 'demo',
@@ -242,8 +262,15 @@ ${altCode
 		hljs.registerLanguage('stylus', stylus);
 	},
 	mounted() {
-		this.activeTarget = this.pcItems[0];
-		const clipboard = new Clipboard('.button--copy--code');
+		if (this.isEmbed) {
+			this.activeTarget = this.tabletItems[0];
+		} else if (this.size === 'tablet') {
+			this.activeTarget = this.tabletItems[0];
+		} else {
+			this.activeTarget = this.pcItems[0];
+		}
+		this.clipboard.copy = new Clipboard('.button--copy--code');
+		this.clipboard.embed = new Clipboard('.button--embed--code');
 
 		this.onThrottleDragMove = this.createThrottleDragMove();
 		this.onDebounceDragMove = this.createDebounceDragMove();
@@ -266,6 +293,9 @@ ${altCode
 		})(document.body);
 
 		document.head.removeChild(this.styleTag);
+
+		this.clipboard.copy.destroy();
+		this.clipboard.embed.destroy();
 	}
 };
 </script>
@@ -293,6 +323,24 @@ ${altCode
   display: flex;
   overflow: hidden;
   position: relative;
+}
+
+.doc-link {
+	position: absolute;
+	top: 54px;
+	right: .5em;
+	opacity: .4;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.doc-link:hover {
+	opacity: 1;
+}
+
+.doc-link svg {
+	height: 1.5em;
+	width: 1.5em;
 }
 
 .view {
@@ -416,7 +464,7 @@ ${altCode
 
 .button--copy--code {
   position: absolute;
-  right: 0;
+  right: 24px;
   top: 0;
   width: 24px;
   height: 24px;
@@ -429,13 +477,42 @@ ${altCode
   transition: .2s;
 }
 
+.button--embed--code {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 24px;
+	height: 24px;
+	background: transparent;
+	border: none;
+	background: rgba(255,255,255,.2);
+	outline: none;
+	cursor: pointer;
+	-webkit-transition: .2s;
+	transition: .2s;
+}
+
 .button--copy--code:active {
+  background: rgba(255,255,255,0);
+}
+
+.button--embed--code:active {
   background: rgba(255,255,255,0);
 }
 
 .button--copy--code svg {
   position: absolute;
   top: .4em;
+  left: .5em;
+  display: block;
+  fill: #9da5b4;
+  width: 1.3em;
+  height: 1.3em;
+}
+
+.button--embed--code svg {
+  position: absolute;
+  top: .5em;
   left: .5em;
   display: block;
   fill: #9da5b4;

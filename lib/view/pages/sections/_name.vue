@@ -1,12 +1,18 @@
 <template>
-  <Ground :opts="opts" :html="section.html" :items="section.items" :altItems="section.altItems" :css="section.css" :size="size"/>
+  <Ground :opts="opts" :html="section.html" :items="section.items" :altItems="section.altItems" :css="section.css" :size="size" :isEmbed="isEmbed"/>
 </template>
 
 <script>
 import ResizeObserver from 'resize-observer-polyfill';
 import Ground from '~/components/Ground';
+import queryString from 'query-string';
 import data from '~/lib/data';
 // import opts from '~/lib/opts';
+
+let query = {}
+if (typeof window !== 'undefined') {
+	query = queryString.parse(location.search);
+}
 
 export default {
   components: {Ground},
@@ -16,12 +22,18 @@ export default {
   },
   data() {
     return {
+			query,
       section: data.find(i => i.name === this.$route.params.name),
       opts: typeof opts === 'undefined' ? {} : opts,
 			styleTag: null,
 			size: 'pc',
     };
   },
+	computed: {
+		isEmbed() {
+			return this.query.mode === 'embed';
+		},
+	},
 	mounted() {
 		const ro = new ResizeObserver((entries, observer) => {
 			for (const entry of entries) {
