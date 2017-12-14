@@ -11,9 +11,14 @@ CSS styleguide generator
 
 ## Demo
 
-[https://nju33.github.io/yosuga/](https://nju33.github.io/yosuga/)
+### Page
 
+[https://nju33.github.io/yosuga/](https://nju33.github.io/yosuga/)
 ![yosuga: screenshot](https://github.com/nju33/yosuga/blob/master/assets/screenshot.png?raw=true)
+
+### Embed by `<iframe/>`
+
+![yosuga: embed-screenshot](https://github.com/nju33/yosuga/blob/master/assets/embed-screenshot.png?raw=true)
 
 
 ## QuickStart
