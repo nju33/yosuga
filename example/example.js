@@ -5,12 +5,15 @@ const yosuga = new Yosuga({
   name: 'Yosuga DEMO',
   base: `${process.cwd()}/example`,
   main: 'sass',
-  style: {
-    fontSize: '14px',
-  },
+  // style: {
+  //   fontSize: '14px',
+  // },
   generate: {
     dir: 'docs',
   },
+  // contents: {
+  //   readme: false,
+  // },
 });
 
 yosuga

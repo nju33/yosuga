@@ -13,6 +13,15 @@
 			>
         <a class="sidebar__link" :href="'#' + section.name" v-text="section.title" @click="activate($event, section.name)"/>
       </li>
+			<hr v-if="readme !== ''" class="sidebar__splitter">
+			<li
+				 v-if="readme !== ''"
+				class="sidebar__item"
+        :class="(visibleSections || []).includes('readme') ? 'sidebar__item--active' : ''"
+				:style="(visibleSections || []).includes('readme') ? {background: opts.style.accentColor} : ''"
+			>
+        <a class="sidebar__link" :href="'#' + readme" @click="activate($event, 'readme')">Readme</a>
+			</li>
     </ul>
 	</div>
 </template>
@@ -37,7 +46,11 @@ export default {
     visibleSections: {
       type: Array,
       default: () => []
-    }
+    },
+    readme: {
+      type: String,
+      default: '',
+    },
   },
   name: 'Sidebar',
   data() {
@@ -174,5 +187,10 @@ ul {
 .sidebar__item--active:before {
   border-color: #cb1b45;
   height: 1.5em;
+}
+
+.sidebar__splitter {
+	border: 1px dashed #222;
+  margin: 0.5em 1em;
 }
 </style>

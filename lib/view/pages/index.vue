@@ -3,7 +3,7 @@
 		fontSize: size === 'pc' ? opts.style.fontSize : `calc(${opts.style.fontSize} * 1.1111)`
   }">
 		<div class="sidebar">
-	    <Sidebar ref="sidebar" :sections="sections" :activeSection="activeSection" :visibleSections="visibleSections" class="sidebar"/>
+	    <Sidebar ref="sidebar" :sections="sections" :activeSection="activeSection" :visibleSections="visibleSections" :readme="readme" class="sidebar" />
 		</div>
     <main class="main" ref="main" data-apoc-sidebar-sibling>
       <section class="section" v-for="section in sections" :key="section.name" v-if="section.html" :id="section.name" :style="size === 'pc' ? {height: section.style.height} : {height: `calc(${section.style.height} * 1.5)`}" data-emergence="hidden">
@@ -21,6 +21,9 @@
 					<iframe class="section-editor" :src="'/sections/' + section.name" />
 				-->
       </section>
+			<section v-if="readme !== ''" class="yosuga-Readme_Wrapper" id="readme" data-emergence="hidden">
+				<div class="yosuga-Readme_Content" v-html="readme"/>
+			</section>
     </main>
 		<footer class="menu" @click="toggleSidebar">
 			<svg version="1.1" width="12" height="16" viewBox="0 0 12 16" class="octicon octicon-three-bars" aria-hidden="true"><path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"/></svg>
@@ -41,7 +44,7 @@ import Ground from '~/components/Ground';
 import data from '~/lib/data';
 import opts from '~/lib/opts';
 
-const moveTo = new MoveTo({duration: 400});
+const moveTo = new MoveTo({duration: 50});
 
 export default {
   components: {
@@ -56,7 +59,8 @@ export default {
 			visibleSections: [],
       activeSection: null,
       opts: typeof opts === 'undefined' ? {} : opts,
-      sections: data,
+      sections: data.sections,
+      readme: data.readme,
       locationOrigin: null,
 			size: 'pc',
     }
@@ -82,11 +86,10 @@ export default {
 				const target = document.getElementById(location.hash.slice(1));
 				if (target) {
 					setTimeout(() => {
-					moveTo.move(target);
-				}, 1000);
+						moveTo.move(target);
+					}, 2000);
 				}
 			}
-			// console.log(99)
 			emergence.init({
 				// container: this.$refs.main,
 				callback: (element, state) => {
@@ -119,6 +122,19 @@ export default {
   }
 }
 </script>
+
+<style>
+.yosuga-Readme_Content img {
+	max-width: 100%;
+}
+
+.yosuga-Readme_Content pre {
+	background: #292c34;
+	color: #ccc;
+	padding: 1em .5em;
+	font-size: .9em;
+}
+</style>
 
 <style scoped>
 h1,
@@ -263,4 +279,14 @@ h6 {
 		transform: translate(50%,50%);
 	}
 }
+
+.yosuga-Readme_Wrapper {
+	background: #fff;
+	padding: 1em;
+}
+
+.yosuga-Readme_Content {
+	width: 888px;
+}
+
 </style>

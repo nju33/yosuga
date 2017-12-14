@@ -4,7 +4,8 @@ CSS styleguide generator
 
 [![npm: nju33/yosuga](https://img.shields.io/npm/v/yosuga.svg)](https://www.npmjs.com/package/yosuga)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
-[![CircleCI](https://circleci.com/gh/nju33/yosuga.svg?style=svg)](https://circleci.com/gh/nju33/yosuga)[![Coverage Status](https://coveralls.io/repos/github/nju33/yosuga/badge.svg?branch=master)](https://coveralls.io/github/nju33/yosuga?branch=master)
+[![CircleCI](https://circleci.com/gh/nju33/yosuga.svg?style=svg)](https://circleci.com/gh/nju33/yosuga)
+[![Coverage Status](https://coveralls.io/repos/github/nju33/yosuga/badge.svg?branch=master)](https://coveralls.io/github/nju33/yosuga?branch=master)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![license: mit](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
@@ -113,31 +114,18 @@ For example, if `opts.main` is set to `less`, only the `button` will be included
 interface Options {
   // Base directory
   base: `${process.cwd()}/example`;
-	
+
   // Site's icon(logo) file name. This is as follows
   // `path.join(opts.base, opts.icon)`, if there is
   icon?: string;
-	
+
   // Site's title
   name?: string;
-	
+
   // Main (alt)css
   main?: 'css' | 'postcss' | 'sass' | 'less' | 'stylus';
 	// default is `css`
-	
-  // Adjust to your liking
-  style?: {
-    fontSize?: string;
-    accentColor?: string;
-  };
-	//
-	// default
-	//
-	// style: {
-	//  fontSize: '14px',
-	//  accentColor: '#cb1b45'
-	// }
-	
+
   // Map of each directory name
   dirs?: {
     // ``path.join(opts.base, opts.dirs.yosuga)`
@@ -164,11 +152,36 @@ interface Options {
 	//   less: 'less',
 	//   stylus: 'stylus',
 	// }
-	
+
   // `nuxt.generate`
   generate?: {
     dir?: 'docs';
   };
+
+
+  // Adjust to your liking
+  style?: {
+    fontSize?: string;
+    accentColor?: string;
+  };
+	//
+	// default
+	//
+	// style: {
+	//  fontSize: '13px',
+	//  accentColor: '#cb1b45'
+	// }
+
+  // Adjust the contents
+  contents?: {
+    readme?: boolean; // Add project README.md
+  };
+	//
+	// default
+	//
+	// contents: {
+	//  readme: true,
+	// }
 }
 ```
 
@@ -177,4 +190,3 @@ interface Options {
 The MIT License (MIT)
 
 Copyright (c) 2017 nju33 <nju33.ki@gmail.com>
- 

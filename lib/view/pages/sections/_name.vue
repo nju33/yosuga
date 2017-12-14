@@ -17,13 +17,13 @@ if (typeof window !== 'undefined') {
 export default {
   components: {Ground},
   validate({params}) {
-    this.section = data.find(i => i.name === params.name);
+    this.section = data.sections.find(i => i.name === params.name);
     return typeof this.section !== 'undefined';
   },
   data() {
     return {
 			query,
-      section: data.find(i => i.name === this.$route.params.name),
+      section: data.sections.find(i => i.name === this.$route.params.name),
       opts: typeof opts === 'undefined' ? {} : opts,
 			styleTag: null,
 			size: 'pc',

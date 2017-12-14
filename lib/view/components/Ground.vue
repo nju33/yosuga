@@ -203,7 +203,11 @@ ${altCode
 			const nextWidthPer = nextWidth / parentWidth;
 			this.viewWidth = nextWidthPer * 100 + '%';
 		},
-		lockScroll: throttle(() => {
+		lockScroll: throttle(function() {
+			if (this.size !== 'pc') {
+				return;
+			}
+
 			if (document.body.style.overflow !== 'hidden') {
 				document.body.style.overflow = 'hidden';
 			}
