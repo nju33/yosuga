@@ -5,6 +5,12 @@
  * Copyright 2017 Hasan Aydoğdu <hsnaydd@gmail.com>
  */
 
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
 /*!
  * Vue.js v2.4.4
  * (c) 2014-2017 Evan You
