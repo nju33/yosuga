@@ -107,7 +107,7 @@
   "scripts": {
     "build": "yarn build:prod && yarn flow-copy-source",
     "build:prod": "NODE_ENV=production gulp lib",
-    "build:docs": "NODE_ENV=production node -r babel-register build-demo.js",
+    "build:docs": "node -r babel-register build-demo.js",
     "flow-copy-source": "flow-copy-source lib dist -i '*.test.js' -i 'view/**'",
     "dev": "NODE_ENV=dev gulp watch",
     "dev:browser": "NODE_ENV=dev gulp watch:browser",

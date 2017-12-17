@@ -17,17 +17,17 @@ if (typeof window !== 'undefined') {
 export default {
 	head() {
 		return {
-			title: `${this.section.title} - ${opts.title}`,
+			// title: `${this.section.title} - ${opts.title}`,
 			meta: [
 				// {
 				// 	property: 'og:image',
 				// 	content: `/screenshots/sections/${this.section.name}.png`
 				// },
-				{
-					name: 'og:title',
-					property: 'og:title',
-					content: `${this.section.title} - ${opts.title}`,
-				},
+				// {
+				// 	name: 'og:title',
+				// 	property: 'og:title',
+				// 	content: `${this.section.title} - ${opts.title}`,
+				// },
 				{
 					name: 'description',
 					content: this.section.summary
