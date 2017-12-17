@@ -9,6 +9,7 @@ export default class Section {
 
   data: {
     title: string,
+    summary?: string,
     description?: string,
     style: {
       height?: string,
@@ -43,6 +44,10 @@ export default class Section {
     return this.data.title;
   }
 
+  get summary(): string {
+    return get(this.data, 'summary', undefined);
+  }
+
   get description(): string {
     return get(this.data, 'description', undefined);
   }
@@ -57,6 +62,7 @@ export default class Section {
     return {
       name: this.name,
       title: this.title,
+      summary: this.summary,
       description: this.description ? marked(this.description) : undefined,
       style: this.style,
       html: this.html,

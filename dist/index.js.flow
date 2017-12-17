@@ -9,10 +9,11 @@ import marked from 'marked';
 import pGlob from 'glob-promise';
 import pMap from 'p-map';
 import matter from 'gray-matter';
-import delay from 'delay';
 import zipObject from 'lodash.zipobject';
 import uniq from 'lodash.uniq';
 import pkgDir from 'pkg-dir';
+import delay from 'delay';
+// import puppeteer from 'puppeteer';
 import toml from 'toml';
 import aru from 'aru';
 import {readonly} from 'core-decorators';
@@ -111,6 +112,7 @@ export default class Yosuga {
    */
   @readonly
   static defaultOpts: YosugaDefaultOptions = {
+    icon: 'icon.png',
     name: '',
     port: 3333,
     main: 'css',
@@ -469,7 +471,12 @@ export default class Yosuga {
 
     let targets = await this._getTargets();
     targets = uniq([this.opts.main, ...targets]);
-    const targetContents = await this._getTargetContents(compiler, targets);
+    let targetContents;
+    try {
+      targetContents = await this._getTargetContents(compiler, targets);
+    } catch (err) {
+      return;
+    }
     const validKeys = Object.keys(targetContents[this.opts.main]);
 
     if (validKeys.length === 0) {
@@ -550,7 +557,11 @@ export default class Yosuga {
 
     const matches = Object.values(this.opts.dirs).map(dir => {
       // $FlowFixMe
-      return path.join(this.opts.base, dir, '**/*.+(css|sass|scss|less|styl)');
+      return path.join(
+        this.opts.base,
+        dir,
+        '**/*.+(html|css|sass|scss|less|styl)',
+      );
     });
 
     console.log(chalk.gray('watching...'));
@@ -560,6 +571,7 @@ export default class Yosuga {
     console.log();
 
     const nuxt = await this.view.build();
+    console.log(this.view.config);
 
     this.server = new Server({
       port: port || this.opts.port,
@@ -589,9 +601,7 @@ export default class Yosuga {
   }
 
   async generate(base?: string) {
-    await this.serve();
-    process.exit();
-
+    // const moduleDirname = await pkgDir(__dirname);
     await aru('dataFile', fs.access(this._filepath.lib, fs.constants.F_OK));
     await aru.left('dataFile', async () => {
       await fs.mkdir(this._filepath.lib);
@@ -608,6 +618,7 @@ export default class Yosuga {
     await fs.writeFile(this._filepath.opts, JSON.stringify(opts));
     await this._copyIconIfExists();
 
+    this.view.dev(false);
     this.view.setTitle(this.opts.name);
     if (base !== undefined) {
       this.view.setBase(base);
@@ -618,7 +629,55 @@ export default class Yosuga {
       const rawData = await fs.readFile(this._filepath.data, 'utf-8');
       const data = JSON.parse(rawData);
       this.view.setRoutes(data.sections);
+
+      //
+      // for og:image
+      //
+      // this.view.config.dev = true;
+      // await this.serve(3355);
+      //
+      // await delay(5000);
+      // this.view.config.dev = false;
+      //
+      // const browser = await puppeteer.launch();
+      // const page = await browser.newPage();
+      // await fs.ensureDir(
+      //   path.join(moduleDirname, 'lib/view/static/screenshots/sections'),
+      // );
+      // await page.setViewport({
+      //   width: 1200,
+      //   height: 630,
+      // });
+      // for (const route of ['', ...(this.view.config.generate: any).routes]) {
+      //   if (route === '') {
+      //     // eslint-disable-next-line no-await-in-loop
+      //     await page.goto('http://localhost:3355');
+      //     // eslint-disable-next-line no-await-in-loop
+      //     await page.screenshot({
+      //       path: path.join(
+      //         moduleDirname,
+      //         'lib/view/static/screenshots/index.png',
+      //       ),
+      //     });
+      //   } else {
+      //     // eslint-disable-next-line no-await-in-loop
+      //     await page.goto('http://localhost:3355' + route);
+      //     // eslint-disable-next-line no-await-in-loop
+      //     await page.screenshot({
+      //       path: path.join(
+      //         moduleDirname,
+      //         'lib/view/static/screenshots/',
+      //         route + '.png',
+      //       ),
+      //     });
+      //   }
+      // }
+      //
+      // await browser.close();
+
       await this.view.generate();
+      // this.server.exit();
+      // process.exit();
     } catch (err) {
       console.log(err);
     }
