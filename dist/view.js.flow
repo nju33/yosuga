@@ -89,6 +89,31 @@ export default class View {
           handler: 'cacheFirst',
           method: 'GET',
         },
+        {
+          urlPattern: 'https://github.com/.*',
+          handler: 'cacheFirst',
+          method: 'GET',
+        },
+        {
+          urlPattern: 'https://img.shields.io/.*',
+          handler: 'cacheFirst',
+          method: 'GET',
+        },
+        {
+          urlPattern: 'https://circleci.com/.*',
+          handler: 'cacheFirst',
+          method: 'GET',
+        },
+        {
+          urlPattern: 'https://coveralls.io/.*',
+          handler: 'cacheFirst',
+          method: 'GET',
+        },
+        {
+          urlPattern: '',
+          handler: 'cacheFirst',
+          method: 'GET',
+        },
       ],
     },
     manifest: {
@@ -164,15 +189,17 @@ export default class View {
     (this.config.manifest: any).name = title;
   }
 
-  setRoutes(sections: any[]): Promise<void> {
+  setRoutes(sections: any[]) {
     const routes = sections.map(s => `/sections/${s.name}`);
-    if (this.config.generate.routes === undefined) {
-      this.config.generate = {
-        ...this.config.generate,
-        routes,
-      };
-    } else {
-      this.config.generate.routes.push(...routes);
+    if (this.config.generate) {
+      if (this.config.generate.routes === undefined) {
+        this.config.generate = {
+          ...this.config.generate,
+          routes,
+        };
+      } else {
+        this.config.generate.routes.push(...routes);
+      }
     }
   }
 

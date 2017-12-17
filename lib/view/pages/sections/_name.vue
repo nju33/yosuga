@@ -7,7 +7,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 import Ground from '~/components/Ground';
 import queryString from 'query-string';
 import data from '~/lib/data';
-// import opts from '~/lib/opts';
+import opts from '~/lib/opts';
 
 let query = {}
 if (typeof window !== 'undefined') {
@@ -15,6 +15,31 @@ if (typeof window !== 'undefined') {
 }
 
 export default {
+	head() {
+		return {
+			title: `${this.section.title} - ${opts.title}`,
+			meta: [
+				// {
+				// 	property: 'og:image',
+				// 	content: `/screenshots/sections/${this.section.name}.png`
+				// },
+				{
+					name: 'og:title',
+					property: 'og:title',
+					content: `${this.section.title} - ${opts.title}`,
+				},
+				{
+					name: 'description',
+					content: this.section.summary
+				},
+				{
+					name: 'og:description',
+					property: 'og:description',
+					content: this.section.summary,
+				},
+			]
+		}
+	},
   components: {Ground},
   validate({params}) {
     this.section = data.sections.find(i => i.name === params.name);

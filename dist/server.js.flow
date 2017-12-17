@@ -30,7 +30,9 @@ export default class Server {
     this.config = Object.assign({}, Server.defaultConfig, config);
   }
 
-  serve() {
-    bs.init(this.config);
+  serve(): Promise<void> {
+    return new Promise(r => {
+      bs.init(this.config, r);
+    });
   }
 }
