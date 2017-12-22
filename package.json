@@ -8,7 +8,7 @@
     "@nuxtjs/pwa": "^2.0.4",
     "apoc-sidebar": "^0.1.1",
     "aru": "^0.1.0",
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.20.1",
     "chalk": "^2.3.0",
     "clipboard": "^1.7.1",
     "core-decorators": "^0.20.0",
@@ -84,12 +84,12 @@
     "gulp-if": "^2.0.2",
     "gulp-plumber": "^1.1.0",
     "gulp-shell": "^0.6.3",
-    "jest": "^21.2.1",
+    "jest": "^22.0.3",
     "nullpo": "^0.0.2",
     "postcss-loader": "^2.0.9",
     "pretty-error": "^2.1.1",
-    "vue-server-renderer": "^2.5.13",
-    "vue-template-compiler": "^2.5.10"
+    "vue-server-renderer": "^2.5.11",
+    "vue-template-compiler": "^2.5.13"
   },
   "homepage": "https://github.com/nju33/yosuga#readme",
   "keywords": [
