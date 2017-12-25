@@ -1590,9 +1590,9 @@ browser-sync-ui@v1.0.1:
     socket.io-client "2.0.4"
     stream-throttle "^0.1.3"
 
-browser-sync@^2.20.1:
-  version "2.20.1"
-  resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.20.1.tgz#e0627ea874e8a7a1afb2f2639488ddd4a734c999"
+browser-sync@^2.21.0:
+  version "2.21.0"
+  resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.21.0.tgz#91cde3a8452f22f355ebe717ca1b3c1dbf9ca096"
   dependencies:
     browser-sync-ui v1.0.1
     bs-recipes "1.3.4"
@@ -10507,7 +10507,7 @@ vue-router@^2.7.0:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.8.1.tgz#9833c9ee57ac83beb0269056fefee71713f20695"
 
-vue-server-renderer@^2.5.13:
+vue-server-renderer@^2.5.11:
   version "2.5.13"
   resolved "https://registry.yarnpkg.com/vue-server-renderer/-/vue-server-renderer-2.5.13.tgz#6a0d421a0fd3e2b7357b59495d744b7e9279d68e"
   dependencies:
