@@ -289,4 +289,17 @@ h6 {
 	width: 888px;
 }
 
+@media (max-width: 888px) {
+  .yosuga-Readme_Content {
+    width: calc(100vw - 210px);
+  }
+}
+
+@media (max-width: 768px) {
+  .yosuga-Readme_Content {
+    width: calc(100vw - 32px);
+  }
+}
+
+
 </style>

@@ -351,6 +351,10 @@ ${altCode
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   max-width: 50%;
   min-width: 50%;
   -webkit-box-flex: 1;
