@@ -1,7 +1,7 @@
 {
   "name": "yosuga",
   "description": "CSS styleguide generator",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "nju33 <nju33.ki@gmail.com>",
   "bugs": "https://github.com/nju33/yosuga/issues",
   "dependencies": {
