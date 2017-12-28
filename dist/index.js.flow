@@ -571,7 +571,6 @@ export default class Yosuga {
     console.log();
 
     const nuxt = await this.view.build();
-    console.log(this.view.config);
 
     this.server = new Server({
       port: port || this.opts.port,
