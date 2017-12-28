@@ -6,6 +6,7 @@ const yosuga = new Yosuga({
   name: 'Yosuga DEMO',
   base: `${process.cwd()}/example`,
   main: 'sass',
+  ignore: /variable/,
   generate: {
     dir: 'docs',
   },
