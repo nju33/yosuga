@@ -117,80 +117,69 @@ For example, if `opts.main` is set to `less`, only the `button` will be included
 
 ```js
 interface Options {
-  // Base directory
+  // Specify base directory
+	// The default is `process.cwd()`
   base: `${process.cwd()}/example`;
 
-  // Site's icon(logo) file name. This is as follows
-  // `path.join(opts.base, opts.icon)`, if there is
+  // Specify site's icon(logo) filename
+  // e.g. `path.join(opts.base, opts.icon)`
+	// if truthy, Yosuga make the icon of the sidebar to display above the title
   icon?: string;
 
-  // Site's title
+  // Specify site's title
+	// if truthy, Yosuga make the title of the sidebar to display
   name?: string;
 
-  // Main (alt)css
+  // Spacify main (alt)css
+  // the default is `css`
   main?: 'css' | 'postcss' | 'sass' | 'less' | 'stylus';
-  // default is `css`
 
-  // Regular expression of filename that does not require HTML
+  // Specify regular expression of filename that does not require HTML
   // e.g. `/variable/`
   ignore?: RegExp,
 
   // Map of each directory name
   dirs?: {
-    // ``path.join(opts.base, opts.dirs.yosuga)`
+    // This is Interpret as `path.join(opts.base, opts.dirs[yosuga | css | postcss | sass | less | stylus])`
     yosuga?: string;
-    // ``path.join(opts.base, opts.dirs.css)`
     css?: string
-    // ``path.join(opts.base, opts.dirs.postcss)`
     postcss?: string
-    // ``path.join(opts.base, opts.dirs.sass)`
     sass?: string
-    // ``path.join(opts.base, opts.dirs.less)`
     less?: string
-    // ``path.join(opts.base, opts.dirs.stylus)`
     stylus?: string
+	  // the defaults is
+		//
+	  // yosuga: 'yosuga',
+	  // css: 'css',
+	  // postcss: 'postcss',
+	  // sass: 'sass',
+	  // less: 'less',
+	  // stylus: 'stylus',
   },
-  //
-  // defaults
-  //
-  // dirs: {
-  //   yosuga: 'yosuga',
-  //   css: 'css',
-  //   postcss: 'postcss',
-  //   sass: 'sass',
-  //   less: 'less',
-  //   stylus: 'stylus',
-  // }
 
-  // `nuxt.generate`
+  // Just `nuxt.generate`
   generate?: {
     dir?: 'docs';
   };
 
 
-  // Adjust to your liking
+  // Adjust for your style
   style?: {
     fontSize?: string;
     accentColor?: string;
+	  // the defaults is
+	  //
+	  // fontSize: '13px',
+	  // accentColor: '#cb1b45'
   };
-  //
-  // default
-  //
-  // style: {
-  //  fontSize: '13px',
-  //  accentColor: '#cb1b45'
-  // }
 
-  // Adjust the contents
+  // Adjust for your contents
   contents?: {
-    readme?: boolean; // Add project README.md
+    readme?: boolean; // Add project's README.md into the document
+	  // the defaults is
+	  //
+	  // readme: true,
   };
-  //
-  // default
-  //
-  // contents: {
-  //  readme: true,
-  // }
 }
 ```
 
