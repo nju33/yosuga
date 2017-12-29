@@ -198,4 +198,4 @@ interface Options {
 
 The MIT License (MIT)
 
-Copyright (c) 2017 nju33 <nju33.ki@gmail.com>
+Copyright (c) 2018 nju33 <nju33.ki@gmail.com>
