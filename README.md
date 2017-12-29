@@ -118,16 +118,16 @@ For example, if `opts.main` is set to `less`, only the `button` will be included
 ```js
 interface Options {
   // Specify base directory
-	// The default is `process.cwd()`
+  // The default is `process.cwd()`
   base: `${process.cwd()}/example`;
 
   // Specify site's icon(logo) filename
   // e.g. `path.join(opts.base, opts.icon)`
-	// if truthy, Yosuga make the icon of the sidebar to display above the title
+  // if truthy, Yosuga make the icon of the sidebar to display above the title
   icon?: string;
 
   // Specify site's title
-	// if truthy, Yosuga make the title of the sidebar to display
+  // if truthy, Yosuga make the title of the sidebar to display
   name?: string;
 
   // Spacify main (alt)css
@@ -147,14 +147,14 @@ interface Options {
     sass?: string
     less?: string
     stylus?: string
-	  // the defaults is
-		//
-	  // yosuga: 'yosuga',
-	  // css: 'css',
-	  // postcss: 'postcss',
-	  // sass: 'sass',
-	  // less: 'less',
-	  // stylus: 'stylus',
+    // the defaults is
+    //
+    // yosuga: 'yosuga',
+    // css: 'css',
+    // postcss: 'postcss',
+    // sass: 'sass',
+    // less: 'less',
+    // stylus: 'stylus',
   },
 
   // Just `nuxt.generate`
@@ -167,18 +167,18 @@ interface Options {
   style?: {
     fontSize?: string;
     accentColor?: string;
-	  // the defaults is
-	  //
-	  // fontSize: '13px',
-	  // accentColor: '#cb1b45'
+    // the defaults is
+    //
+    // fontSize: '13px',
+    // accentColor: '#cb1b45'
   };
 
   // Adjust for your contents
   contents?: {
     readme?: boolean; // Add project's README.md into the document
-	  // the defaults is
-	  //
-	  // readme: true,
+    // the defaults is
+    //
+    // readme: true,
   };
 }
 ```
