@@ -313,6 +313,10 @@ ${altCode
   cursor: col-resize;
 }
 
+.view > * {
+  margin: 1em;
+}
+
 .code__box pre code{
   font-family: 'Source Code Pro', monospace;
   font-size: 13px;
