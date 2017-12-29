@@ -130,6 +130,10 @@ interface Options {
   // Main (alt)css
   main?: 'css' | 'postcss' | 'sass' | 'less' | 'stylus';
 	// default is `css`
+	
+	// Regular expression of filename that does not require HTML
+	// e.g. `/variable/`
+	ignore?: RegExp,
 
   // Map of each directory name
   dirs?: {
