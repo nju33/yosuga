@@ -37,6 +37,7 @@ export interface YosugaOptions {
   name: string;
   port: number;
   main: YosugaTarget;
+  ignore?: RegExp;
   base: string;
   dirs: YosugaDirs;
   style: {
@@ -153,6 +154,7 @@ export default class Yosuga {
             t.string('stylus'),
           ),
         ),
+        t.property('ignore', t.type('RegExp', t.ref('RegExp')), true),
         t.property(
           'dirs',
           t.object(
@@ -406,8 +408,13 @@ export default class Yosuga {
   }
 
   async _getSections(basenames: string[]): Promise<Section[]> {
+    let filtered = basenames;
+    if (this.opts.ignore !== undefined) {
+      // $FlowFixMe: possibly undefined
+      filtered = basenames.filter(name => !this.opts.ignore.test(name));
+    }
     // eslint-disable-next-line no-return-await
-    return await pMap(basenames, async name => {
+    return await pMap(filtered, async name => {
       const filePattern = path.join(
         this.opts.base,
         (this.opts.dirs: any).yosuga,
