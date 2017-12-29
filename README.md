@@ -129,11 +129,11 @@ interface Options {
 
   // Main (alt)css
   main?: 'css' | 'postcss' | 'sass' | 'less' | 'stylus';
-	// default is `css`
-	
-	// Regular expression of filename that does not require HTML
-	// e.g. `/variable/`
-	ignore?: RegExp,
+  // default is `css`
+
+  // Regular expression of filename that does not require HTML
+  // e.g. `/variable/`
+  ignore?: RegExp,
 
   // Map of each directory name
   dirs?: {
@@ -150,17 +150,17 @@ interface Options {
     // ``path.join(opts.base, opts.dirs.stylus)`
     stylus?: string
   },
-	//
-	// defaults
-	//
-	// dirs: {
-	//   yosuga: 'yosuga',
+  //
+  // defaults
+  //
+  // dirs: {
+  //   yosuga: 'yosuga',
   //   css: 'css',
-	//   postcss: 'postcss',
-	//   sass: 'sass',
-	//   less: 'less',
-	//   stylus: 'stylus',
-	// }
+  //   postcss: 'postcss',
+  //   sass: 'sass',
+  //   less: 'less',
+  //   stylus: 'stylus',
+  // }
 
   // `nuxt.generate`
   generate?: {
@@ -173,24 +173,24 @@ interface Options {
     fontSize?: string;
     accentColor?: string;
   };
-	//
-	// default
-	//
-	// style: {
-	//  fontSize: '13px',
-	//  accentColor: '#cb1b45'
-	// }
+  //
+  // default
+  //
+  // style: {
+  //  fontSize: '13px',
+  //  accentColor: '#cb1b45'
+  // }
 
   // Adjust the contents
   contents?: {
     readme?: boolean; // Add project README.md
   };
-	//
-	// default
-	//
-	// contents: {
-	//  readme: true,
-	// }
+  //
+  // default
+  //
+  // contents: {
+  //  readme: true,
+  // }
 }
 ```
 
