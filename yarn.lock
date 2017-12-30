@@ -69,9 +69,9 @@
   dependencies:
     "@babel/types" "7.0.0-beta.31"
 
-"@babel/register@^7.0.0-beta.34":
-  version "7.0.0-beta.34"
-  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.0.0-beta.34.tgz#b39f3fbe2f288cd2f76a0727bce77920b925d984"
+"@babel/register@^7.0.0-beta.36":
+  version "7.0.0-beta.36"
+  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.0.0-beta.36.tgz#dc3b32c0f70d3a11fc49402626a585147e114831"
   dependencies:
     core-js "^2.4.0"
     find-cache-dir "^1.0.0"
