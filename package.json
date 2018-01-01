@@ -5,7 +5,7 @@
   "author": "nju33 <nju33.ki@gmail.com>",
   "bugs": "https://github.com/nju33/yosuga/issues",
   "dependencies": {
-    "@nuxtjs/pwa": "^2.0.4",
+    "@nuxtjs/pwa": "^2.0.5",
     "apoc-sidebar": "^0.1.1",
     "aru": "^0.1.0",
     "browser-sync": "^2.23.1",
