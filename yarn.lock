@@ -3624,6 +3624,18 @@ execa@^0.7.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+execa@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-0.8.0.tgz#d8d76bbc1b55217ed190fd6dd49d3c774ecfc8da"
+  dependencies:
+    cross-spawn "^5.0.1"
+    get-stream "^3.0.0"
+    is-stream "^1.1.0"
+    npm-run-path "^2.0.0"
+    p-finally "^1.0.0"
+    signal-exit "^3.0.0"
+    strip-eof "^1.0.0"
+
 exif-parser@^0.1.9:
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/exif-parser/-/exif-parser-0.1.12.tgz#58a9d2d72c02c1f6f02a0ef4a9166272b7760922"
@@ -5973,11 +5985,11 @@ kew@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/kew/-/kew-0.7.0.tgz#79d93d2d33363d6fdd2970b335d9141ad591d79b"
 
-kill-port@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/kill-port/-/kill-port-1.0.0.tgz#b2c48d3048ea800d6620ff0d4b6f8ce91f644275"
+kill-port@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/kill-port/-/kill-port-1.1.0.tgz#f80bee0f242ff03aa38b364cda50694d41544e6a"
   dependencies:
-    execa "^0.6.3"
+    execa "^0.8.0"
     get-them-args "^1.2.1"
 
 kind-of@^1.1.0:
