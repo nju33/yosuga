@@ -38,7 +38,7 @@
     "nuxt": "^1.0.0-rc11",
     "p-map": "^1.2.0",
     "pkg-dir": "^2.0.0",
-    "postcss": "^6.0.15",
+    "postcss": "^6.0.16",
     "postcss-load-config": "^1.2.0",
     "postcss-sorting": "^3.1.0",
     "pretty": "^2.0.0",
