@@ -80,7 +80,7 @@
     "flow-copy-source": "^1.2.1",
     "flow-typed": "^2.2.3",
     "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
+    "gulp-babel": "^7.0.1",
     "gulp-if": "^2.0.2",
     "gulp-plumber": "^1.1.0",
     "gulp-shell": "^0.6.5",
