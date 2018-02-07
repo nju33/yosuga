@@ -17,7 +17,7 @@
     "delay": "^2.0.0",
     "emergence.js": "^1.1.2",
     "fast-diff": "^1.1.2",
-    "fast-memoize": "^2.2.8",
+    "fast-memoize": "^2.3.0",
     "flow-runtime": "^0.16.0",
     "fs-extra": "^5.0.0",
     "glob": "^7.1.2",
