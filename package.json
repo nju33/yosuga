@@ -54,7 +54,7 @@
     "autoprefixer": "^7.2.4",
     "ava": "^0.24.0",
     "babel-eslint": "^8.1.2",
-    "babel-jest": "^22.0.4",
+    "babel-jest": "^22.4.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
