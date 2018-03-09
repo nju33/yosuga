@@ -85,7 +85,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-shell": "^0.6.5",
     "jest": "^22.0.5",
-    "nullpo": "^0.0.2",
+    "nullpo": "^0.1.0",
     "postcss-loader": "^2.0.9",
     "pretty-error": "^2.1.1",
     "vue-server-renderer": "^2.5.11",
