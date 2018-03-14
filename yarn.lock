@@ -70,10 +70,10 @@
     "@babel/types" "7.0.0-beta.31"
 
 "@babel/register@^7.0.0-beta.37":
-  version "7.0.0-beta.37"
-  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.0.0-beta.37.tgz#961fbaa537b7fbfbffc7c293acef7460c714225b"
+  version "7.0.0-beta.41"
+  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.0.0-beta.41.tgz#0df0ea8431607ba1a12187efaf472314ca6d6518"
   dependencies:
-    core-js "^2.4.0"
+    core-js "^2.5.3"
     find-cache-dir "^1.0.0"
     home-or-tmp "^3.0.0"
     lodash "^4.2.0"
