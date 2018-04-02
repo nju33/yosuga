@@ -22,7 +22,7 @@
     "fs-extra": "^5.0.0",
     "glob": "^7.1.2",
     "glob-promise": "^3.3.0",
-    "gray-matter": "^3.1.1",
+    "gray-matter": "^4.0.1",
     "highlight.js": "^9.12.0",
     "js-beautify": "^1.7.5",
     "kill-port": "^1.0.0",
