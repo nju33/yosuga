@@ -26,7 +26,7 @@
     "highlight.js": "^9.12.0",
     "js-beautify": "^1.7.5",
     "kill-port": "^1.0.0",
-    "less": "^2.7.3",
+    "less": "^3.0.2",
     "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "lodash.throttle": "^4.1.1",
