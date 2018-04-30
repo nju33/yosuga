@@ -10,7 +10,7 @@
     "aru": "^0.1.0",
     "browser-sync": "^2.23.2",
     "chalk": "^2.3.0",
-    "clipboard": "^1.7.1",
+    "clipboard": "^2.0.1",
     "core-decorators": "^0.20.0",
     "core-js": "^2.5.3",
     "cssnano": "^3.10.0",
