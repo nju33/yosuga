@@ -42,7 +42,7 @@
     "postcss-load-config": "^1.2.0",
     "postcss-sorting": "^3.1.0",
     "pretty": "^2.0.0",
-    "puppeteer": "^0.13.0",
+    "puppeteer": "^1.4.0",
     "query-string": "^5.0.1",
     "resize-observer-polyfill": "^1.5.0",
     "stylus": "^0.54.5",
