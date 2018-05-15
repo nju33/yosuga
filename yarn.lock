@@ -70,13 +70,13 @@
     "@babel/types" "7.0.0-beta.31"
 
 "@babel/register@^7.0.0-beta.37":
-  version "7.0.0-beta.37"
-  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.0.0-beta.37.tgz#961fbaa537b7fbfbffc7c293acef7460c714225b"
+  version "7.0.0-beta.47"
+  resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.0.0-beta.47.tgz#ac53bc357ca59979db0e306aa5d3121aa612a7a2"
   dependencies:
-    core-js "^2.4.0"
+    core-js "^2.5.3"
     find-cache-dir "^1.0.0"
     home-or-tmp "^3.0.0"
-    lodash "^4.2.0"
+    lodash "^4.17.5"
     mkdirp "^0.5.1"
     pirates "^3.0.1"
     source-map-support "^0.4.2"
@@ -6453,6 +6453,10 @@ lodash@^3.10.1:
 lodash@^4.0.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@~4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
+
+lodash@^4.17.5:
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
 lodash@~1.0.1:
   version "1.0.2"
